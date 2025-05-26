@@ -1,9 +1,9 @@
 import {defineField, defineType} from 'sanity'
 
-export const landingPageType = defineType({
-  name: 'landingPage',
+export const aboutType = defineType({
+  name: 'about',
   type: 'document',
-  title: 'Page d’accueil',
+  title: 'À propos',
   fields: [
     defineField({
       name: 'title',
@@ -11,16 +11,19 @@ export const landingPageType = defineType({
       title: 'Titre de la page',
     }),
     defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug (URL)',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    }),
+    defineField({
       name: 'layout',
       type: 'array',
       title: 'Page Layout',
-      of: [
-        {type: 'textImageSection'},
-        {type: 'heroSection'},
-        {type: 'imageSection'},
-        {type: 'collectionSection'},
-        {type: 'embedSection'},
-      ],
+      of: [{type: 'textImageSection'}],
     }),
   ],
 })

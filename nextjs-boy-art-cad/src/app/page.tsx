@@ -1,24 +1,21 @@
 import Layout from '../app/components/Layout'
 import {client} from '../sanity/client'
 
-
-
 export default async function HomePage() {
-  const data = await client.fetch(`*[_type == "landingPage" && slug.current == "homepage"][0]{
+  const data = await client.fetch(`*[_type == "landingPage"][0]{
+  _id,
+  _createdAt,
+  _updatedAt,
+  _rev,
+  _type,
   title,
   layout[]{
     _key,
     _type,
-    heading,
-    text,
-    image{
-      asset->{url},
-      alt
-    },
-    imagePosition
+    title
   }
 }`)
-console.log(data)
+  console.log(data)
   const layout = data?.layout || []
   console.log(layout)
 
@@ -28,4 +25,3 @@ console.log(data)
     </main>
   )
 }
-
