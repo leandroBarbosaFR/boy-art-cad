@@ -49,7 +49,9 @@ export default function HeroSection({data}: HeroSectionProps) {
       <div className="justify-items-center hero-section-container absolute z-20">
         <h1 className="hero-title">{heading}</h1>
         <div className="hero-subtitle">
-          <h3>{subtitle}</h3>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[16px]">
+            {subtitle}
+          </h3>
         </div>
         <div className="hero-body">
           <PortableText value={body} />
