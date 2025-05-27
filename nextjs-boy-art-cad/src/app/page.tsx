@@ -22,14 +22,29 @@ export default async function HomePage() {
       url
     },
     image{
-    asset->{
-      _id,
-      url
-    },
-    alt
-  }
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
+  },
+  images[]{
+    _key,
+    _type,
+    title,
+    images[]{
+      _key,
+      _type,
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
   }
 }`)
+
   console.log('data', data)
   const layout = data?.layout || []
 

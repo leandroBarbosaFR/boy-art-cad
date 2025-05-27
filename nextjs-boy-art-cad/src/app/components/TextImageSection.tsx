@@ -60,9 +60,9 @@ export default function TextImageSection({data}: TextImageSectionProps) {
           <div className="image-wrapper">
             {image && (
               <Image
-                width={7172}
-                height={7172}
-                src={urlFor(data.image).width(7172).url()}
+                width={3419}
+                height={3564}
+                src={urlFor(data.image).width(3419).url()}
                 alt="text image section"
                 quality={100}
                 priority

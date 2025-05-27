@@ -2,6 +2,7 @@ import type {PortableTextBlock} from '@portabletext/types'
 
 import TextImageSection from '../components/TextImageSection'
 import HeroSection from '../components/HeroSection'
+import ImageSection from '../components/ImageSection'
 
 type Block = {
   _key: string
@@ -20,6 +21,15 @@ type Block = {
     }
     alt?: string
   }
+  images?: {
+    _key: string
+    alt?: string
+    asset: {
+      _id: string
+      url: string
+    }
+  }[]
+
   // other fields depending on the block type
 }
 export default function Layout({blocks}: {blocks: Block[]}) {
@@ -29,6 +39,13 @@ export default function Layout({blocks}: {blocks: Block[]}) {
         switch (block._type) {
           case 'textImageSection':
             return <TextImageSection key={block._key} data={block} />
+          case 'imageSection':
+            return (
+              <ImageSection
+                key={block._key}
+                data={{title: block.title, images: block.images || []}}
+              />
+            )
           case 'heroSection':
             return (
               <HeroSection
