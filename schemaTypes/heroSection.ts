@@ -28,5 +28,22 @@ export const heroSection = defineType({
       type: 'image',
       title: 'Image',
     }),
+    defineField({
+      name: 'cta',
+      type: 'object',
+      title: 'Call to Action',
+      fields: [
+        defineField({
+          name: 'label',
+          type: 'string',
+          title: 'Texte du bouton',
+        }),
+        defineField({
+          name: 'url',
+          type: 'url',
+          title: 'Lien',
+        }),
+      ],
+    }),
   ],
 })

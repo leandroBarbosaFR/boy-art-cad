@@ -1,5 +1,8 @@
 import Layout from '../app/components/Layout'
 import {client} from '../sanity/client'
+// import ThemeToggle from './components/ThemeToggle'
+
+import './globals.css'
 
 export default async function HomePage() {
   const data = await client.fetch(`*[_type == "landingPage"][0]{
@@ -9,18 +12,30 @@ export default async function HomePage() {
   _rev,
   _type,
   title,
+  subtitle,
   layout[]{
+    ...,
     _key,
     _type,
-    title
+    cta {
+      label,
+      url
+    },
+    image{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  }
   }
 }`)
-  console.log(data)
+  console.log('data', data)
   const layout = data?.layout || []
-  console.log(layout)
 
   return (
     <main>
+      {/* <ThemeToggle /> */}
       <Layout blocks={layout} />
     </main>
   )
