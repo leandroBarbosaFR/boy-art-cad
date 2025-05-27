@@ -16,7 +16,7 @@ const geistMono = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: '👾 Boy Art Cad',
+  title: 'BOY ART CAD ',
   description: 'Marseille',
 }
 
