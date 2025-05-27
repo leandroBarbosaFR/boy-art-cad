@@ -62,3 +62,41 @@
     display: block;
   }
 }
+
+@media (max-width: 740px) {
+  .textImgSection-wrapper {
+    padding: 50px 6px;
+    position: relative;
+  }
+
+  .heading-wrapper {
+    grid-row: 2;
+    grid-column: 1/13;
+    margin: 0 auto;
+  }
+
+  .subtitle-wrapper {
+    grid-row: 1;
+    grid-column: 1/13;
+    margin: 0 auto;
+  }
+
+  .body-wrapper {
+    grid-row: 3;
+    grid-column: 1/13;
+    padding: 0px 0 0 0;
+    margin: 0 auto;
+  }
+
+  .cta-wrapper {
+    grid-row: 5;
+    grid-column: 1/13;
+    margin: 0 auto;
+  }
+
+  .image-wrapper {
+    grid-row: 4;
+    grid-column: 1/13;
+    margin: 0 auto;
+  }
+}

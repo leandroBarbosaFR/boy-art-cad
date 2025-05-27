@@ -50,16 +50,25 @@
   .hero-title {
     color: var(--urban-white);
     font-size: 35px;
+    grid-column: 2/13;
   }
 
   .hero-subtitle {
     font-weight: 400;
     color: var(--urban-white);
     font-size: 16px;
+    grid-column: 2/13;
   }
 
   .hero-body {
     font-size: 16px;
+    grid-column: 2/13;
+  }
+
+  .hero-cta {
+    grid-row: 4;
+    grid-column: 2/12;
+    justify-self: flex-start;
   }
 
   .hero-section-container {
