@@ -64,8 +64,6 @@ export default async function HomePage() {
   }
 }`)
 
-
-  console.log('data', data)
   const layout = data?.layout || []
 
   return (

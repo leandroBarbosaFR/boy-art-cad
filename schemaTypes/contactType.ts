@@ -11,6 +11,22 @@ export const contactType = defineType({
       title: 'Titre de la page',
     }),
     defineField({
+      name: 'subtitle',
+      title: 'Sous-titre',
+      type: 'string',
+    }),
+    defineField({
+      name: 'body',
+      type: 'array',
+      title: 'Description',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug (URL)',

@@ -28,12 +28,10 @@ interface CollectionSectionProps {
 }
 
 export default function CollectionSection({data}: CollectionSectionProps) {
-  console.log('data.images', data.images)
   const heading = data.title || ''
   const body = data.body || []
   const validImages = data.images?.filter((img) => img.image?.asset?._ref) || []
 
-  console.log('validImages', validImages)
   return (
     <section className="collectionSection-wrapper">
       {/* <div className="collectionSection-bg-section"></div> */}
@@ -59,7 +57,7 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                   quality={100}
                   className="image-grid-item-collection"
                 />
-                <h1 className='font-bold'>{img.title}</h1>
+                <h1 className="font-bold">{img.title}</h1>
                 <h3>{img.price} €</h3>
                 <p className="image-dimensions">{img.dimensions}</p>
               </div>

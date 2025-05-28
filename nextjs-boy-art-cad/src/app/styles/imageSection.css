@@ -41,20 +41,20 @@
   border-radius: 10px;
 }
 
-.imageSection-bg-section {
+.imageSection-bg-section-px {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  transform: skewX(-55deg) translateX(8rem);
+  left: 0;
+  width: 10%;
+  height: 50%;
+  /* transform: skewX(-55deg) translateX(8rem); */
   display: none;
-  background: rgba(222, 222, 220, 0.8);
+  /* background: rgba(222, 222, 220, 0.8); */
   z-index: -1;
 }
 
 @media (min-width: 1024px) {
-  .imageSection-bg-section {
+  .imageSection-bg-section-px {
     display: block;
   }
 
@@ -62,8 +62,6 @@
     grid-column: span 4;
   }
 }
-
-
 
 @media (max-width: 740px) {
   .imgSection-wrapper {

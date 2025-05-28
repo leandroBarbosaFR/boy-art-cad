@@ -47,7 +47,6 @@ type Block = {
   }[]
 }
 
-console.log()
 export default function Layout({blocks}: {blocks: Block[]}) {
   return (
     <>
@@ -56,7 +55,6 @@ export default function Layout({blocks}: {blocks: Block[]}) {
           case 'textImageSection':
             return <TextImageSection key={block._key} data={block} />
           case 'collectionSection':
-            console.log('collectionSection block:', block)
             return (
               <CollectionSection
                 key={block._key}
