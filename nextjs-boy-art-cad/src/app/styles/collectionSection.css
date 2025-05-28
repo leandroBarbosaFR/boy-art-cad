@@ -73,8 +73,9 @@
 
 @media (max-width: 740px) {
   .collectionSection-wrapper {
-    padding: 50px 6px;
+    padding: 50px 10px;
     position: relative;
+    margin: 0 6px;
   }
 
   .image-grid-item-collection {
