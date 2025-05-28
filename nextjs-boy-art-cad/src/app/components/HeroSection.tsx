@@ -45,7 +45,7 @@ export default function HeroSection({data}: HeroSectionProps) {
         />
       )}
       {/* overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/10"></div>
+      <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/10"></div>
       <div className="justify-items-center hero-section-container absolute z-20">
         <h1 className="hero-title">{heading}</h1>
         <div className="hero-subtitle">

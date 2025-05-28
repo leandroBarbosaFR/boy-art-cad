@@ -59,9 +59,11 @@
   }
 
   .image-grid-item {
-    grid-column: span 6;
+    grid-column: span 4;
   }
 }
+
+
 
 @media (max-width: 740px) {
   .imgSection-wrapper {

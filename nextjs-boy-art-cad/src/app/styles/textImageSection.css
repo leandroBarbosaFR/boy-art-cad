@@ -63,6 +63,20 @@
   }
 }
 
+@media (min-width: 1039px) and (max-width: 1536px) {
+
+  .heading-wrapper {
+    grid-row: 2;
+    grid-column: 2/11;
+  }
+
+  .body-wrapper {
+    grid-row: 3;
+    grid-column: 7/12;
+    padding: 20px 0 0 0;
+  }
+}
+
 @media (max-width: 740px) {
   .textImgSection-wrapper {
     padding: 50px 6px;

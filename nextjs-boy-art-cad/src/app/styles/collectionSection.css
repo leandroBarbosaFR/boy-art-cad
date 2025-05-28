@@ -67,7 +67,7 @@
   }
 
   .image-grid-item-collection {
-    grid-column: span 6;
+    grid-column: span 4;
   }
 }
 
