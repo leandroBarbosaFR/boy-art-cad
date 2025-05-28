@@ -1,11 +1,10 @@
-'use client';
+'use client'
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Joystick, Menu, X } from 'lucide-react';
-import { client } from '../../sanity/client';
+import React, {useEffect, useState} from 'react'
+import Link from 'next/link'
+import {Joystick, Menu, X} from 'lucide-react'
+import {client} from '../../sanity/client'
 import useScrollPosition from '../../hooks/useScrollPosition'
-
 
 const HEADER_QUERY = `*[_type == "header"][0]{
   links[]{
@@ -15,40 +14,40 @@ const HEADER_QUERY = `*[_type == "header"][0]{
     text,
     internal
   }
-}`;
+}`
 
 interface HeaderLink {
-  _key: string;
-  _type: string;
+  _key: string
+  _type: string
   internal?: {
-    _ref: string;
-    _type: string;
-  };
-  openInNewTab: boolean;
-  text: string;
+    _ref: string
+    _type: string
+  }
+  openInNewTab: boolean
+  text: string
 }
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [links, setLinks] = useState<HeaderLink[]>([]);
-  const scrolled = useScrollPosition(10);
+  const [isOpen, setIsOpen] = useState(false)
+  const [links, setLinks] = useState<HeaderLink[]>([])
+  const scrolled = useScrollPosition(10)
 
   useEffect(() => {
     const fetchHeader = async () => {
-      const data = await client.fetch<{ links: HeaderLink[] }>(HEADER_QUERY);
-      setLinks(data?.links || []);
-    };
-    fetchHeader();
-  }, []);
+      const data = await client.fetch<{links: HeaderLink[]}>(HEADER_QUERY)
+      setLinks(data?.links || [])
+    }
+    fetchHeader()
+  }, [])
 
   return (
     <header
-    className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
         scrolled ? 'backdrop-blur bg-[#1a1a1ad4] shadow-md' : 'backdrop-blur bg-white/5 shadow-sm'
-    }`}
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex justify-between items-center h-16">
+      <div className="px-4 flex justify-between sm:px-6 lg:px-8">
+        <nav className="flex justify-between w-full items-center h-16">
           {/* Logo */}
           <div className="text-xl">
             <Link href="/" className="flex items-center font-medium text-[#f1f0e7]">
@@ -105,5 +104,5 @@ export default function Header() {
         </div>
       )}
     </header>
-  );
+  )
 }
