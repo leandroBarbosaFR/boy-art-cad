@@ -17,7 +17,7 @@ export const collectionSection = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
-      name: 'images',
+      name: 'imagesCollection',
       type: 'array',
       title: 'Images',
       of: [{type: 'collectionImage'}],

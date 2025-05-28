@@ -33,7 +33,7 @@ export default function HeroSection({data}: HeroSectionProps) {
   const cta = data.cta
 
   return (
-    <section className="relative h-screen">
+    <section className="relative h-screen hero-section-wrapper">
       {image && (
         <Image
           src={urlFor(data.image).width(7172).url()}

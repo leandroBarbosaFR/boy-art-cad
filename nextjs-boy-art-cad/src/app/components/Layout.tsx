@@ -3,6 +3,7 @@ import type {PortableTextBlock} from '@portabletext/types'
 import TextImageSection from '../components/TextImageSection'
 import HeroSection from '../components/HeroSection'
 import ImageSection from '../components/ImageSection'
+import CollectionSection from '../components/CollectionSection'
 
 type Block = {
   _key: string
@@ -29,9 +30,24 @@ type Block = {
       url: string
     }
   }[]
-
-  // other fields depending on the block type
+  imagesCollection?: {
+    _key: string
+    _type: string
+    dimensions: string
+    image: {
+      _type: string
+      alt?: string
+      asset: {
+        _ref: string
+        _type: string
+      }
+    }
+    price?: number
+    title?: string
+  }[]
 }
+
+console.log()
 export default function Layout({blocks}: {blocks: Block[]}) {
   return (
     <>
@@ -39,6 +55,14 @@ export default function Layout({blocks}: {blocks: Block[]}) {
         switch (block._type) {
           case 'textImageSection':
             return <TextImageSection key={block._key} data={block} />
+          case 'collectionSection':
+            console.log('collectionSection block:', block)
+            return (
+              <CollectionSection
+                key={block._key}
+                data={{title: block.title, body: block.body, images: block.imagesCollection || []}}
+              />
+            )
           case 'imageSection':
             return (
               <ImageSection
@@ -59,7 +83,6 @@ export default function Layout({blocks}: {blocks: Block[]}) {
                 }}
               />
             )
-          // other cases...
           default:
             return null
         }

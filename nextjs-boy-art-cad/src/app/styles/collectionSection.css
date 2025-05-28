@@ -1,47 +1,55 @@
-.grid-text-section-image {
-  display: grid;
+.grid-text-section-collection {
   grid-template-columns: repeat(12, 1fr);
   column-gap: 25px;
   row-gap: 20px;
+  display: grid;
 }
 
-.imgSection-wrapper {
-  padding: 100px 15px;
+.hero-body-collection {
+  grid-column: 1/13;
+  grid-row: 2;
+  color: #f1f0e7;
+  justify-self: center;
+}
+.collectionSection-wrapper {
   position: relative;
+  background-color: #1a1a1a;
+  margin: 0 25px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 50px 25px;
 }
 
-.imgSection-container {
+.collectionSection-container {
   width: 100%;
 }
 
-.heading-wrapper-image {
+.heading-wrapper-collection {
   grid-row: 1;
   grid-column: 1/13;
   justify-self: center;
+  color: #f1f0e7;
 }
 
-.image-wrapper-images {
+.image-wrapper-collection {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: 25px;
   row-gap: 20px;
   grid-column: 1 / -1;
+  grid-row: 3;
 }
 
-.image-grid-item {
+.image-grid-item-collection {
   grid-column: span 4;
   width: 100%;
   height: auto;
   border-radius: 10px;
   object-fit: cover;
+  color: #f1f0e7;
 }
 
-.image-section {
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.imageSection-bg-section {
+.collectionSection-bg-section {
   position: absolute;
   top: 0;
   right: 0;
@@ -54,32 +62,32 @@
 }
 
 @media (min-width: 1024px) {
-  .imageSection-bg-section {
+  .collectionSection-bg-section {
     display: block;
   }
 
-  .image-grid-item {
+  .image-grid-item-collection {
     grid-column: span 6;
   }
 }
 
 @media (max-width: 740px) {
-  .imgSection-wrapper {
+  .collectionSection-wrapper {
     padding: 50px 6px;
     position: relative;
   }
 
-  .image-grid-item {
+  .image-grid-item-collection {
     grid-column: span 12;
   }
 
-  .heading-wrapper-image {
+  .heading-wrapper-collection {
     grid-row: 1;
     grid-column: 1/13;
     margin: 0 auto;
   }
 
-  .image-wrapper-images {
+  .image-wrapper-collection {
     grid-row: 2;
     grid-column: 1/13;
     margin: 0 auto;
@@ -87,7 +95,7 @@
 }
 
 @media (min-width: 1460px) {
-  .image-grid-item {
+  .image-grid-item-collection {
     grid-column: span 4;
   }
 }

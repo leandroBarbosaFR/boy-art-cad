@@ -30,19 +30,34 @@ export default async function HomePage() {
     }
   },
   images[]{
+  _key,
+  _type,
+  title,
+  images[]{
     _key,
     _type,
-    title,
-    images[]{
-      _key,
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
+  imagesCollection[] {
+    _key,
+    _type,
+    dimensions,
+    image {
       _type,
-      asset->{
+      alt,
+      asset-> {
         _id,
         url
-      },
-      alt
-    }
+      }
+    },
+    price,
+    title
   }
+}
 }`)
 
   console.log('data', data)

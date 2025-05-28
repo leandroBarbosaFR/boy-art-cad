@@ -11,6 +11,10 @@
   text-align: flex-start;
 }
 
+.hero-section-wrapper {
+  height: 100vh;
+}
+
 .hero-subtitle {
   font-weight: 400;
   color: var(--urban-white);
