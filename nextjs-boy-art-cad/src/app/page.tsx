@@ -14,14 +14,18 @@ export default async function HomePage() {
   title,
   subtitle,
   layout[]{
-    ...,
     _key,
     _type,
+    title,
+    subtitle,
+    body,
+    images,
+    imagesCollection,
     cta {
       label,
       url
     },
-    image{
+    image {
       asset->{
         _id,
         url
@@ -30,35 +34,36 @@ export default async function HomePage() {
     }
   },
   images[]{
-  _key,
-  _type,
-  title,
-  images[]{
     _key,
     _type,
-    asset->{
-      _id,
-      url
-    },
-    alt
-  },
-  imagesCollection[] {
-    _key,
-    _type,
-    dimensions,
-    image {
+    title,
+    images[]{
+      _key,
       _type,
-      alt,
-      asset-> {
+      asset->{
         _id,
         url
-      }
+      },
+      alt
     },
-    price,
-    title
+    imagesCollection[] {
+      _key,
+      _type,
+      dimensions,
+      image {
+        _type,
+        alt,
+        asset-> {
+          _id,
+          url
+        }
+      },
+      price,
+      title
+    }
   }
-}
 }`)
+
 
   console.log('data', data)
   const layout = data?.layout || []

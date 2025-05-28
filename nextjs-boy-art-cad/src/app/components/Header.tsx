@@ -1,14 +1,52 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Joystick, Menu, X } from 'lucide-react';
+import { client } from '../../sanity/client';
+import useScrollPosition from '../../hooks/useScrollPosition'
+
+
+const HEADER_QUERY = `*[_type == "header"][0]{
+  links[]{
+    _key,
+    _type,
+    openInNewTab,
+    text,
+    internal
+  }
+}`;
+
+interface HeaderLink {
+  _key: string;
+  _type: string;
+  internal?: {
+    _ref: string;
+    _type: string;
+  };
+  openInNewTab: boolean;
+  text: string;
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [links, setLinks] = useState<HeaderLink[]>([]);
+  const scrolled = useScrollPosition(10);
+
+  useEffect(() => {
+    const fetchHeader = async () => {
+      const data = await client.fetch<{ links: HeaderLink[] }>(HEADER_QUERY);
+      setLinks(data?.links || []);
+    };
+    fetchHeader();
+  }, []);
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur bg-white/5 shadow-sm">
+    <header
+    className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
+        scrolled ? 'backdrop-blur bg-[#1a1a1ad4] shadow-md' : 'backdrop-blur bg-white/5 shadow-sm'
+    }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -21,14 +59,16 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-6 items-center">
-            <Link href="/about" className="text-[#f1f0e7] hover:underline">About</Link>
-            <Link href="/projects" className="text-[#f1f0e7] hover:underline">Projects</Link>
-            <Link
-              href="/contact"
-              className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
-            >
-              Contact Us
-            </Link>
+            {links.map((link) => (
+              <Link
+                key={link._key}
+                href={`/${link.text.toLowerCase()}`}
+                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+                target={link.openInNewTab ? '_blank' : '_self'}
+              >
+                {link.text}
+              </Link>
+            ))}
           </div>
 
           {/* Mobile Burger */}
@@ -46,19 +86,21 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden fixed top-16 left-0 w-full bg-[#1a1a1a] text-[#f1f0e7] px-6 py-4 shadow-lg transition-all z-40">
           <div className="flex flex-col space-y-4">
-            <Link href="/about" onClick={() => setIsOpen(false)} className="hover:underline">
-              About
-            </Link>
-            <Link href="/projects" onClick={() => setIsOpen(false)} className="hover:underline">
-              Projects
-            </Link>
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="bg-[#f1f0e7] text-[#1a1a1a] px-4 py-2 rounded-lg hover:bg-[#f1f0e7]/90 transition"
-            >
-              Contact Us
-            </Link>
+            {links.map((link) => (
+              <Link
+                key={link._key}
+                href={`/${link.text.toLowerCase()}`}
+                onClick={() => setIsOpen(false)}
+                className={`${
+                  link.text.toLowerCase() === 'contact'
+                    ? 'bg-[#f1f0e7] text-[#1a1a1a] px-4 py-2 rounded-lg hover:bg-[#f1f0e7]/90 transition'
+                    : 'hover:underline'
+                }`}
+                target={link.openInNewTab ? '_blank' : '_self'}
+              >
+                {link.text}
+              </Link>
+            ))}
           </div>
         </div>
       )}
