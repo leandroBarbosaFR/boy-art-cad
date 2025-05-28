@@ -59,8 +59,8 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                   quality={100}
                   className="image-grid-item-collection"
                 />
-                <h1>{img.title}</h1>
-                <h3>{img.price}</h3>
+                <h1 className='font-bold'>{img.title}</h1>
+                <h3>{img.price} €</h3>
                 <p className="image-dimensions">{img.dimensions}</p>
               </div>
             ))}

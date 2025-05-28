@@ -2,11 +2,13 @@ import type {Metadata} from 'next'
 import {Poppins} from 'next/font/google'
 import './globals.css'
 import {ThemeProvider} from 'next-themes'
+import Header from '../app/components/Header'
+import Footer from '../app/components/Footer'
 
 const geistSans = Poppins({
   variable: '--font-geist-sans',
   subsets: ['latin'],
-  weight: '500',
+  weight: '300',
 })
 
 const geistMono = Poppins({
@@ -28,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+       <Header />
         <ThemeProvider
           // attribute="class"
           // defaultTheme="system"
@@ -36,6 +39,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   )
