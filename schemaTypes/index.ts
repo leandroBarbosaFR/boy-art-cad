@@ -11,6 +11,7 @@ import {embedSection} from './embedSection'
 import {headerType} from './headerType'
 import {footerType} from './footerType'
 import {link} from './link'
+import {cookiesType} from './cookiesType'
 
 export const schemaTypes = [
   landingPageType,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   headerType,
   footerType,
   link,
+  cookiesType,
 ]

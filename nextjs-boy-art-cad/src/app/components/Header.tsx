@@ -50,7 +50,9 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        scrolled ? 'backdrop-blur bg-[#1a1a1ad4] shadow-md' : 'backdrop-blur bg-white/1 shadow-sm'
+        scrolled
+          ? 'backdrop-blur bg-[#1a1a1ad4] shadow-md'
+          : 'backdrop-blur bg-[#1a1a1ad4] shadow-sm'
       }`}
     >
       <div className="px-4 flex justify-between sm:px-6 lg:px-8">
