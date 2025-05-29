@@ -20,10 +20,32 @@ export const aboutType = defineType({
       },
     }),
     defineField({
-      name: 'layout',
+      name: 'body',
       type: 'array',
-      title: 'Page Layout',
-      of: [{type: 'textImageSection'}],
+      title: 'Description',
+      of: [{type: 'block'}],
+    }),
+    defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+    }),
+    defineField({
+      name: 'cta',
+      type: 'object',
+      title: 'Call to Action',
+      fields: [
+        defineField({
+          name: 'title',
+          type: 'string',
+          title: 'Titre du bloc CTA',
+        }),
+        defineField({
+          name: 'link',
+          type: 'links',
+          title: 'Lien',
+        }),
+      ],
     }),
   ],
 })
