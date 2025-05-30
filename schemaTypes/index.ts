@@ -12,8 +12,11 @@ import {headerType} from './headerType'
 import {footerType} from './footerType'
 import {link} from './link'
 import {cookiesType} from './cookiesType'
+import {collection} from './collection'
+import {siteSettings} from './siteSettings'
 
 export const schemaTypes = [
+  siteSettings,
   landingPageType,
   textImageSection,
   heroSection,
@@ -28,4 +31,5 @@ export const schemaTypes = [
   footerType,
   link,
   cookiesType,
+  collection,
 ]

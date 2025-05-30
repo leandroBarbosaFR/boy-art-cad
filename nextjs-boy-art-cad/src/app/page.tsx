@@ -19,8 +19,35 @@ export default async function HomePage() {
     title,
     subtitle,
     body,
-    images,
-    imagesCollection,
+        collections[]->{
+      _id,
+      _type,
+      title,
+      slug,
+      subtitle,
+      description,
+      price,
+      dimensions,
+      mainImage{
+        asset->{
+          _id,
+          url,
+          metadata,
+          alt
+        },
+        alt
+      },
+    },
+    images[]{
+      _key,
+      _type,
+      asset->{
+        _id,
+        url,
+        metadata
+      },
+      alt
+    },
     cta {
       label,
       url
@@ -28,44 +55,15 @@ export default async function HomePage() {
     image {
       asset->{
         _id,
-        url
-      },
-      alt
-    }
-  },
-  images[]{
-    _key,
-    _type,
-    title,
-    images[]{
-      _key,
-      _type,
-      asset->{
-        _id,
-        url
+        url,
+        metadata
       },
       alt
     },
-    imagesCollection[] {
-      _key,
-      _type,
-      dimensions,
-      image {
-        _type,
-        alt,
-        asset-> {
-          _id,
-          url
-        }
-      },
-      price,
-      title
-    }
-  }
+  },
 }`)
 
   const layout = data?.layout || []
-
   return (
     <main>
       {/* <ThemeToggle /> */}

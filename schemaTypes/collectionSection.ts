@@ -1,3 +1,4 @@
+// schemas/collectionSection.ts
 import {defineField, defineType} from 'sanity'
 
 export const collectionSection = defineType({
@@ -17,10 +18,10 @@ export const collectionSection = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
-      name: 'imagesCollection',
+      name: 'collections',
       type: 'array',
-      title: 'Images',
-      of: [{type: 'collectionImage'}],
+      title: 'Collections à afficher',
+      of: [{type: 'reference', to: [{type: 'collection'}]}],
     }),
   ],
 })

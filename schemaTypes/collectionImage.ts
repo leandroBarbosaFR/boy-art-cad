@@ -26,15 +26,10 @@ export const collectionImage = defineType({
       title: "Titre de l'image",
     }),
     defineField({
-      name: 'price',
-      type: 'number',
-      title: 'Prix',
-    }),
-    defineField({
-      name: 'dimensions',
-      type: 'string',
-      title: 'Dimensions',
-      description: 'Exemple: 40x60 cm',
+      name: 'collection',
+      title: 'Collection parente',
+      type: 'reference',
+      to: [{type: 'collection'}],
     }),
   ],
 })

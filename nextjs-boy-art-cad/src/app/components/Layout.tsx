@@ -30,20 +30,20 @@ type Block = {
       url: string
     }
   }[]
-  imagesCollection?: {
-    _key: string
+  collections?: {
+    _id: string
     _type: string
+    title: string
+    slug: {_type: string; current: string}
     dimensions: string
-    image: {
-      _type: string
-      alt?: string
-      asset: {
-        _ref: string
-        _type: string
-      }
-    }
     price?: number
-    title?: string
+    mainImage?: {
+      asset: {
+        _id: string
+        url: string
+      }
+      alt?: string
+    }
   }[]
 }
 
@@ -58,7 +58,13 @@ export default function Layout({blocks}: {blocks: Block[]}) {
             return (
               <CollectionSection
                 key={block._key}
-                data={{title: block.title, body: block.body, images: block.imagesCollection || []}}
+                data={{
+                  _key: block._key,
+                  _type: block._type,
+                  title: block.title,
+                  body: block.body,
+                  collections: block.collections || [],
+                }}
               />
             )
           case 'imageSection':

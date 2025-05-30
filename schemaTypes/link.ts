@@ -15,7 +15,7 @@ export const link = defineType({
       name: 'internal',
       title: 'Lien interne',
       type: 'reference',
-      to: [{type: 'contact'}, {type: 'about'}],
+      to: [{type: 'contact'}, {type: 'about'}, {type: 'pages'}],
     }),
     defineField({
       name: 'external',

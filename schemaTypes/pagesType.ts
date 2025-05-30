@@ -20,10 +20,9 @@ export const pagesType = defineType({
       },
     }),
     defineField({
-      name: 'layout',
+      name: 'body',
       type: 'array',
-      title: 'Page Layout',
-      of: [{type: 'textImageSection'}],
+      of: [{type: 'block'}],
     }),
   ],
 })

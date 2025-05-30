@@ -46,7 +46,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[transparent] text-[#1a1a1a]">
-      <div className=" px-4 sm:px-6 lg:px-8 py-10">
+      <div className="px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo / Brand */}
           <div className="flex items-center text-xl font-medium">
@@ -54,13 +54,13 @@ export default function Footer() {
             Boy<b>Art</b>Cad
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex gap-6 text-sm">
+          {/* Navigation Links - Responsive Layout */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm text-center sm:text-left">
             {links.map((link) => (
               <Link
                 key={link._key}
                 href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
-                className="px-4 py-2 text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white rounded-lg transition"
+                className="px-4 py-2 text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white rounded-lg transition whitespace-nowrap"
                 target={link.openInNewTab ? '_blank' : '_self'}
               >
                 {link.text}
