@@ -42,7 +42,7 @@
 
 @media (max-width: 768px) {
   .legal-pages-section {
-    padding: 200px 0;
+    padding: 200px 10px;
     /* position: relative; */
   }
 

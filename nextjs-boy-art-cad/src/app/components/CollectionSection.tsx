@@ -61,8 +61,7 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                       <Image
                         src={collection.mainImage.asset.url}
                         alt={collection.mainImage.alt || collection.title}
-                        width={3419}
-                        height={3564}
+                        fill
                         quality={100}
                         objectFit="cover"
                         className="image-collection"

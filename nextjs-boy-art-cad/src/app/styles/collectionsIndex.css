@@ -1,7 +1,6 @@
 .collections-index-page {
   padding: 200px 25px;
   background: #f1f0e7;
-  /* height: 100vh; */
 }
 
 .collections-index-grid {
@@ -31,6 +30,11 @@
   .collections-index-grid {
     column-gap: 15px;
     row-gap: 15px;
+  }
+
+  .collections-index-page {
+    padding: 200px 10px;
+    background: #f1f0e7;
   }
 
   .collections-item-grid {
