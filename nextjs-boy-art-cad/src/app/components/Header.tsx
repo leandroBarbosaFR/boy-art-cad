@@ -116,6 +116,7 @@ export default function Header() {
             ))}
               <Link
                 href="/contact"
+                onClick={() => setIsOpen(false)}
                 className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
               >
                 Contact
