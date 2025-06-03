@@ -77,6 +77,12 @@ export default function Header() {
                 {link.text}
               </Link>
             ))}
+              <Link
+                href="/contact"
+                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+              >
+                Contact
+              </Link>
           </div>
 
           {/* Mobile Burger */}
@@ -102,12 +108,18 @@ export default function Header() {
                 key={link._key}
                 href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+                className="px-4 py-2 bg-[transparent] text-[#f1f0e7] hover:bg-[#f1f0e7]/90 transition border-b border-[#f1f0e7]/30"
                 target={link.openInNewTab ? '_blank' : '_self'}
               >
                 {link.text}
               </Link>
             ))}
+              <Link
+                href="/contact"
+                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+              >
+                Contact
+              </Link>
           </div>
         </div>
       )}
