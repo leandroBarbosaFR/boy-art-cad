@@ -37,22 +37,17 @@ interface CollectionImage {
   }
 }
 
-// type Props = {
-//   params: Promise<{slug: string}>
-// }
-
 type Props = {
-  params: { slug: string }
+  params: Promise<{slug: string}>
 }
 
-export default async function CollectionShowPage({ params }: Props) {
-  const data = await client.fetch(query, { slug: params.slug })
-
+export default async function CollectionShowPage({params}: Props) {
+  const resolvedParams = await params
+  const data = await client.fetch(query, {slug: resolvedParams.slug})
 
   if (!data) {
     return <div>Collection non trouvée.</div>
   }
-
 
   return (
     <section className="collections-show-section">
