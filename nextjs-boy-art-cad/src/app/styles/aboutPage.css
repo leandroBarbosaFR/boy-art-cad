@@ -54,8 +54,16 @@
 @media (max-width: 768px) {
   .title-about {
     grid-column: 1/13;
-    grid-row: 1;
+    grid-row: 2;
   }
+
+  .image-wrapper {
+    grid-column: 1/13;
+    grid-row: 1;
+    overflow: hidden;
+    border-radius: 10px;
+    height: fit-content;
+}
 
   .about-page-grid {
     display: grid;
@@ -63,7 +71,7 @@
     z-index: 1;
     row-gap: 15px;
     column-gap: 15px;
-    padding: 50px 10px 0 10px;
+    padding: 100px 10px 0 10px;
   }
 
   .body-about {
@@ -95,6 +103,7 @@
     grid-column: 1/13;
     margin: 0 auto;
   }
+
 }
 
 .aboutSection-bg-section {

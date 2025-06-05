@@ -1,9 +1,9 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import {Joystick, Menu, X} from 'lucide-react'
-import {client} from '../../sanity/client'
+import { Joystick, Menu, X } from 'lucide-react'
+import { client } from '../../sanity/client'
 import useScrollPosition from '../../hooks/useScrollPosition'
 import '../styles/header.css'
 
@@ -39,22 +39,38 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [links, setLinks] = useState<HeaderLink[]>([])
   const scrolled = useScrollPosition(10)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const fetchHeader = async () => {
-      const data = await client.fetch<{links: HeaderLink[]}>(HEADER_QUERY)
+      const data = await client.fetch<{ links: HeaderLink[] }>(HEADER_QUERY)
       setLinks(data?.links || [])
     }
     fetchHeader()
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const paddingStyle = isMobile
+    ? scrolled
+      ? '8px 10px'
+      : '10px 10px'
+    : scrolled
+    ? '10px 20px'
+    : '30px 20px'
+
   return (
-<header
-  className={`fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition`}
-  style={{
-    padding: scrolled ? '10px 20px' : '30px 20px',
-  }}
->
+    <header
+      className={`fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition`}
+      style={{ padding: paddingStyle }}
+    >
       <div className="px-4 flex justify-between sm:px-6 lg:px-8">
         <nav className="flex justify-between w-full items-center h-16">
           {/* Logo */}
@@ -77,12 +93,12 @@ export default function Header() {
                 {link.text}
               </Link>
             ))}
-              <Link
-                href="/contact"
-                className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
-              >
-                Contact
-              </Link>
+            <Link
+              href="/contact"
+              className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
+            >
+              Contact
+            </Link>
           </div>
 
           {/* Mobile Burger */}
@@ -99,8 +115,8 @@ export default function Header() {
       {/* Mobile Nav Drawer */}
       {isOpen && (
         <div
-          className="md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#353229] px-6 py-4 shadow-lg transition-all z-40"
-          style={{height: '100vh'}}
+          className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#353229] px-6 py-4 shadow-lg transition-all z-40"
+          style={{ height: '100vh' }}
         >
           <div className="flex flex-col space-y-4">
             {links.map((link) => (
@@ -114,13 +130,13 @@ export default function Header() {
                 {link.text}
               </Link>
             ))}
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
-              >
-                Contact
-              </Link>
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
+            >
+              Contact
+            </Link>
           </div>
         </div>
       )}

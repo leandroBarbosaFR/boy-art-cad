@@ -60,7 +60,6 @@ export default async function AboutPage() {
       <div className="about-page-grid">
         <div className='image-wrapper'>
           {data.image?.asset && (
-            <div>
               <Image
                 src={urlFor(data.image.asset).width(7172).url()}
                 alt={data.title}
@@ -72,7 +71,6 @@ export default async function AboutPage() {
                 style={{ objectFit: 'cover' }}
                
               />
-            </div>
           )}
         </div>
         <div className="title-about">

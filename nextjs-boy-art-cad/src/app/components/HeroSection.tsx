@@ -108,15 +108,8 @@ export default function HeroSection({ data }: HeroSectionProps) {
             </a>
           )}
         </div>
-        <div
+        <div className='image-hero-wrapper'
           ref={imageRef}
-          style={{
-            gridColumn: '7/12',
-            gridRow: '1/4',
-            position: 'unset',
-            overflow: 'hidden',
-            borderRadius: '10px',
-          }}
         >
           {image && (
             <Image

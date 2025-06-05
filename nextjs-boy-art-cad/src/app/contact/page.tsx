@@ -1,9 +1,9 @@
 import React from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 import {PortableText} from '@portabletext/react'
 import ContactForm from '../components/ContactForm'
 import {client} from '../../sanity/client'
-import {urlFor} from '../../lib/sanityImage'
+// import {urlFor} from '../../lib/sanityImage'
 import '../styles/contactPage.css'
 import CrabSvg from '../components/CrabSvg'
 
@@ -27,7 +27,7 @@ const query = `*[_type == "contact" && slug.current == $slug][0] {
 export default async function ContactPage() {
   const slug = 'contact'
   const data = await client.fetch(query, {slug})
-  const image = data.image?.asset?.url
+  // const image = data.image?.asset?.url
   if (!data) {
     return <div>Page not found</div>
   }
@@ -40,7 +40,7 @@ export default async function ContactPage() {
 
       {/* Grid container */}
       <div className="gap-5 px-5 mt-10 contact-page-container">
-        <div className="image-wrapper-contact">
+        {/* <div className="image-wrapper-contact">
         {image && (
           <Image
             src={urlFor(data.image).width(7172).url()}
@@ -53,7 +53,7 @@ export default async function ContactPage() {
             className="rounded-b-lg"
           />
         )}
-      </div>
+      </div> */}
         {/* Title */}
         <h1 className=" font-bold text-4xl text-[#1a1a1a] title-contact">{data.title}</h1>
 
