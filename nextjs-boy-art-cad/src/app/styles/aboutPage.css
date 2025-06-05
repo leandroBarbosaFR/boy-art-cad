@@ -9,7 +9,7 @@
 
 .cta-section {
   grid-column: 1/13;
-  background: #1a1a1a;
+  background: #353229;
   overflow: hidden;
   border-radius: 10px;
   color: #f1f0e7;
@@ -82,7 +82,7 @@
   .cta-section {
     grid-column: 1/13;
     grid-row: 4;
-    background: #1a1a1a;
+    background: #353229;
     overflow: hidden;
     border-radius: 10px;
     color: #f1f0e7;
