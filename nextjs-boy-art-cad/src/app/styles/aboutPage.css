@@ -7,13 +7,6 @@
   padding: 200px 25px 0 25px;
 }
 
-.image-wrapper,
-.title-about,
-.body-about,
-.cta-section {
-  opacity: 0;
-}
-
 .cta-section {
   grid-column: 1/13;
   background: #1a1a1a;

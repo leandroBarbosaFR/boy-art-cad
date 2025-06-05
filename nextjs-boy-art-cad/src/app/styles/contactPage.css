@@ -2,26 +2,34 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   z-index: 1;
+  padding: 200px 25px;
 }
 
+.image-wrapper-contact {
+  height: fit-content;
+  grid-column: 8/13;
+  grid-row: 1/5;
+  overflow: hidden;
+  border-radius: 10px;
+}
 .title-contact {
   grid-column: 1/4;
   grid-row: 1;
 }
 
 .subtitle-contact {
-  grid-column: 4/10;
-  grid-row: 1;
-}
-
-.body-contact {
-  grid-column: 4/10;
+  grid-column: 1/7;
   grid-row: 2;
 }
 
-.form-contact {
-  grid-column: 4/10;
+.body-contact {
+  grid-column: 1/7;
   grid-row: 3;
+}
+
+.form-contact {
+  grid-column: 1/7;
+  grid-row: 4;
 }
 
 @media (max-width: 768px) {

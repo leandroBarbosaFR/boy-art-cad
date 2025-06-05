@@ -37,13 +37,16 @@ export default async function ContactPage() {
       <div className="contactSection-bg-section">
         <CrabSvg />
       </div>
-      {/* Image on top */}
-      <div className="relative w-full h-[400px]">
+
+      {/* Grid container */}
+      <div className="gap-5 px-5 mt-10 contact-page-container">
+        <div className="image-wrapper-contact">
         {image && (
           <Image
             src={urlFor(data.image).width(7172).url()}
             alt="Hero image"
-            fill
+            width={7172}
+            height={7172}
             style={{objectFit: 'cover'}}
             quality={100}
             priority
@@ -51,9 +54,6 @@ export default async function ContactPage() {
           />
         )}
       </div>
-
-      {/* Grid container */}
-      <div className="gap-5 px-5 mt-10 contact-page-container">
         {/* Title */}
         <h1 className=" font-bold text-4xl text-[#1a1a1a] title-contact">{data.title}</h1>
 
