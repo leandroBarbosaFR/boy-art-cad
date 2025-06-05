@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {Joystick, Menu, X} from 'lucide-react'
 import {client} from '../../sanity/client'
 import useScrollPosition from '../../hooks/useScrollPosition'
+import '../styles/header.css'
 
 const HEADER_QUERY = `*[_type == "header"][0]{
    links[]{
@@ -48,19 +49,18 @@ export default function Header() {
   }, [])
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-        scrolled
-          ? 'backdrop-blur bg-[#1a1a1ad4] shadow-md'
-          : 'backdrop-blur bg-[#1a1a1ad4] shadow-sm'
-      }`}
-    >
+<header
+  className={`fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition`}
+  style={{
+    padding: scrolled ? '10px 20px' : '30px 20px',
+  }}
+>
       <div className="px-4 flex justify-between sm:px-6 lg:px-8">
         <nav className="flex justify-between w-full items-center h-16">
           {/* Logo */}
           <div className="text-xl">
-            <Link href="/" className="flex items-center font-medium text-[#f1f0e7]">
-              <Joystick color="#f1f0e7" size={24} className="mr-2" />
+            <Link href="/" className="flex items-center font-medium text-[#353229]">
+              <Joystick color="#353229" size={24} className="mr-2" />
               Boy<b>Art</b>Cad
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default function Header() {
               <Link
                 key={link._key}
                 href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
-                className="px-4 py-2 text-[#f1f0e7] rounded-lg hover:text-[#1a1a1a] hover:bg-[#f1f0e7]/90 transition"
+                className="px-4 py-2 text-[#353229] rounded-lg hover:text-[#f1f0e7] hover:bg-[#353229]/90 transition"
                 target={link.openInNewTab ? '_blank' : '_self'}
               >
                 {link.text}
@@ -79,7 +79,7 @@ export default function Header() {
             ))}
               <Link
                 href="/contact"
-                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+                className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
               >
                 Contact
               </Link>
@@ -87,7 +87,7 @@ export default function Header() {
 
           {/* Mobile Burger */}
           <button
-            className="md:hidden text-[#f1f0e7]"
+            className="md:hidden text-[#353229]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -99,7 +99,7 @@ export default function Header() {
       {/* Mobile Nav Drawer */}
       {isOpen && (
         <div
-          className="md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#1a1a1a] shadow-md text-[#f1f0e7] px-6 py-4 shadow-lg transition-all z-40"
+          className="md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#353229] px-6 py-4 shadow-lg transition-all z-40"
           style={{height: '100vh'}}
         >
           <div className="flex flex-col space-y-4">
@@ -108,7 +108,7 @@ export default function Header() {
                 key={link._key}
                 href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-[transparent] text-[#f1f0e7] hover:bg-[#f1f0e7]/90 transition border-b border-[#f1f0e7]/30"
+                className="px-4 py-2 bg-[transparent] text-[#353229] hover:bg-[#353229]/90 transition border-b border-[#353229]/30"
                 target={link.openInNewTab ? '_blank' : '_self'}
               >
                 {link.text}
@@ -117,7 +117,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-[#f1f0e7] text-[#1a1a1a] rounded-lg hover:bg-[#f1f0e7]/90 transition"
+                className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
               >
                 Contact
               </Link>

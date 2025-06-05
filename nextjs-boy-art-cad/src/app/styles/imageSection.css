@@ -5,8 +5,9 @@
   row-gap: 20px;
 }
 
+
 .imgSection-wrapper {
-  padding: 100px 15px;
+  padding: 30px 15px;
   position: relative;
 }
 
@@ -26,6 +27,7 @@
   column-gap: 25px;
   row-gap: 20px;
   grid-column: 1 / -1;
+
 }
 
 .image-grid-item {

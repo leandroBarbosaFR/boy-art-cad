@@ -1,10 +1,14 @@
-import React from 'react'
-import {PortableText} from '@portabletext/react'
-import type {PortableTextBlock} from '@portabletext/types'
+'use client'
+import React, { useEffect, useRef } from 'react'
+import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import Image from 'next/image'
-import {urlFor} from '../../lib/sanityImage'
+import { urlFor } from '../../lib/sanityImage'
 import '../styles/heroSection.css'
-import {ArrowRight} from 'lucide-react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface HeroSectionProps {
   data: {
@@ -25,7 +29,58 @@ interface HeroSectionProps {
   }
 }
 
-export default function HeroSection({data}: HeroSectionProps) {
+export default function HeroSection({ data }: HeroSectionProps) {
+  const headingRef = useRef(null)
+  const subtitleRef = useRef(null)
+  const bodyRef = useRef(null)
+  const ctaRef = useRef(null)
+  const imageRef = useRef(null)
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: headingRef.current,
+        start: 'top 85%',
+      },
+    })
+
+    tl.from(headingRef.current, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out',
+    })
+      .from(subtitleRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      }, "-=0.4")
+      .from(bodyRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      }, "-=0.3")
+      .from(ctaRef.current, {
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.out',
+      }, "-=0.3")
+
+    gsap.from(imageRef.current, {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: 'top 85%',
+      },
+    })
+  }, [])
+
   const heading = data.title || ''
   const subtitle = data.subtitle || ''
   const body = data.body || []
@@ -34,34 +89,45 @@ export default function HeroSection({data}: HeroSectionProps) {
 
   return (
     <section className="relative h-screen hero-section-wrapper">
-      {image && (
-        <Image
-          src={urlFor(data.image).width(7172).url()}
-          alt="Hero image"
-          fill
-          style={{objectFit: 'cover'}}
-          quality={100}
-          priority
-        />
-      )}
-      {/* overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/10 md:bg-gradient-to-r md:from-black md:via-black/80 md:to-black/10" />
-      <div className="justify-items-center hero-section-container absolute z-20">
-        <h1 className="hero-title">{heading}</h1>
-        <div className="hero-subtitle">
+      <div className="hero-section-container absolute z-20 justify-items-center">
+        <h1 className="hero-title" ref={headingRef}>
+          {heading}
+        </h1>
+        <div className="hero-subtitle" ref={subtitleRef}>
           <h3>{subtitle}</h3>
         </div>
-        <div className="hero-body">
+        <div className="hero-body" ref={bodyRef}>
           <PortableText value={body} />
         </div>
-        <div className="hero-cta">
+        <div className="hero-cta" ref={ctaRef}>
           {cta?.label && (
             <a href={cta.url} target="_blank" rel="noopener noreferrer">
-              <button className="flex gap-2 bg-[#f1f0e7] text-[#1a1a1a] px-6 py-2 rounded hover:bg-[#f1f0e7]/90 transition-all cursor-pointer">
+              <button className="flex gap-2 bg-[#353229] text-[#f1f0e7] px-6 py-2 rounded hover:bg-[#353229]/90 transition-all cursor-pointer">
                 {cta.label}
-                <ArrowRight color="#1a1a1a" size={24} />
               </button>
             </a>
+          )}
+        </div>
+        <div
+          ref={imageRef}
+          style={{
+            gridColumn: '7/12',
+            gridRow: '1/4',
+            position: 'unset',
+            overflow: 'hidden',
+            borderRadius: '10px',
+          }}
+        >
+          {image && (
+            <Image
+              src={urlFor(data.image).width(7172).url()}
+              alt="Hero image"
+              width={7172}
+              height={7172}
+              style={{ objectFit: 'cover' }}
+              quality={100}
+              priority
+            />
           )}
         </div>
       </div>
