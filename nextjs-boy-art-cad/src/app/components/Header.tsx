@@ -5,14 +5,17 @@ import Link from 'next/link'
 import { Joystick, Menu, X } from 'lucide-react'
 import { client } from '../../sanity/client'
 import useScrollPosition from '../../hooks/useScrollPosition'
+import { usePathname, useSearchParams } from 'next/navigation'
 import '../styles/header.css'
 
 const HEADER_QUERY = `*[_type == "header"][0]{
-   links[]{
+  links[]{
     _key,
     _type,
     openInNewTab,
     text,
+    external,
+    anchor,
     internal->{
       _type,
       _ref,
@@ -24,6 +27,10 @@ const HEADER_QUERY = `*[_type == "header"][0]{
 interface HeaderLink {
   _key: string
   _type: string
+  text: string
+  openInNewTab: boolean
+  external?: string
+  anchor?: string
   internal?: {
     _ref: string
     _type: string
@@ -31,8 +38,37 @@ interface HeaderLink {
       current: string
     }
   }
-  openInNewTab: boolean
-  text: string
+}
+
+function resolveLinkHref(link: HeaderLink): string {
+  if (link.external) return link.external
+  if (link.anchor) return link.anchor
+  if (link.internal?._type === 'category') {
+    return `/collection?category=${link.internal.slug?.current}`
+  }
+  if (link.internal?.slug?.current) {
+    return `/${link.internal.slug.current}`
+  }
+  return '#'
+}
+
+function isLinkActive(link: HeaderLink, pathname: string, searchParams: URLSearchParams): boolean {
+  const href = resolveLinkHref(link)
+  
+  // Handle category links specially
+  if (link.internal?._type === 'category') {
+    const currentCategory = searchParams.get('category')
+    return pathname === '/collection' && currentCategory === link.internal.slug?.current
+  }
+  
+  // Handle collection page without category (general collection link)
+  if (href === '/collection') {
+    const currentCategory = searchParams.get('category')
+    return pathname === '/collection' && !currentCategory
+  }
+  
+  // Handle other links
+  return pathname === href
 }
 
 export default function Header() {
@@ -40,6 +76,8 @@ export default function Header() {
   const [links, setLinks] = useState<HeaderLink[]>([])
   const scrolled = useScrollPosition(10)
   const [isMobile, setIsMobile] = useState(false)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     const fetchHeader = async () => {
@@ -68,12 +106,11 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition`}
+      className="fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition"
       style={{ padding: paddingStyle }}
     >
       <div className="px-4 flex justify-between sm:px-6 lg:px-8">
         <nav className="flex justify-between w-full items-center h-16">
-          {/* Logo */}
           <div className="text-xl">
             <Link href="/" className="flex items-center font-medium text-[#353229]">
               <Joystick color="#353229" size={24} className="mr-2" />
@@ -81,18 +118,26 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Desktop Nav */}
+          {/* Desktop */}
           <div className="hidden md:flex gap-6 items-center">
-            {links.map((link) => (
-              <Link
-                key={link._key}
-                href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
-                className="px-4 py-2 text-[#353229] rounded-lg hover:text-[#f1f0e7] hover:bg-[#353229]/90 transition"
-                target={link.openInNewTab ? '_blank' : '_self'}
-              >
-                {link.text}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const href = resolveLinkHref(link)
+              const isActive = isLinkActive(link, pathname, searchParams)
+              return (
+                <Link
+                  key={link._key}
+                  href={href}
+                  className={`px-4 py-2 rounded-lg transition ${
+                    isActive
+                      ? 'bg-[#353229] text-[#f1f0e7]'
+                      : 'text-[#353229] hover:text-[#f1f0e7] hover:bg-[#353229]/90'
+                  }`}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                >
+                  {link.text}
+                </Link>
+              )
+            })}
             <Link
               href="/contact"
               className="px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded-lg hover:bg-[#353229]/90 transition"
@@ -101,7 +146,7 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Burger */}
+          {/* Mobile toggle */}
           <button
             className="md:hidden text-[#353229]"
             onClick={() => setIsOpen(!isOpen)}
@@ -112,24 +157,29 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Mobile Nav Drawer */}
+      {/* Mobile Drawer */}
       {isOpen && (
-        <div
-          className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#353229] px-6 py-4 shadow-lg transition-all z-40"
-          style={{ height: '100vh' }}
-        >
+        <div className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#353229] px-6 py-4 shadow-lg transition-all z-40" style={{ height: '100vh' }}>
           <div className="flex flex-col space-y-4">
-            {links.map((link) => (
-              <Link
-                key={link._key}
-                href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
-                onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-[transparent] text-[#353229] hover:bg-[#353229]/90 transition border-b border-[#353229]/30"
-                target={link.openInNewTab ? '_blank' : '_self'}
-              >
-                {link.text}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const href = resolveLinkHref(link)
+              const isActive = isLinkActive(link, pathname, searchParams)
+              return (
+                <Link
+                  key={link._key}
+                  href={href}
+                  onClick={() => setIsOpen(false)}
+                  className={`px-4 py-2 transition border-b border-[#353229]/30 ${
+                    isActive
+                      ? 'bg-[#353229] text-[#f1f0e7]'
+                      : 'text-[#353229] hover:bg-[#353229]/90'
+                  }`}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                >
+                  {link.text}
+                </Link>
+              )
+            })}
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}

@@ -5,6 +5,7 @@ import {ThemeProvider} from 'next-themes'
 import Header from '../app/components/Header'
 import Footer from '../app/components/Footer'
 import CookieModal from '../app/components/CookieModal'
+import { Suspense } from 'react'
 
 const geistSans = Poppins({
   variable: '--font-geist-sans',
@@ -31,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         <CookieModal />
         <ThemeProvider
           // attribute="class"
