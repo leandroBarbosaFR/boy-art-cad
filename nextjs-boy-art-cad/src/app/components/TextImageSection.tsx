@@ -99,7 +99,7 @@ export default function TextImageSection({data}: TextImageSectionProps) {
           <div className="cta-wrapper">
             {cta?.label && (
               <a href={cta.url} target="_blank" rel="noopener noreferrer">
-                <button className="bg-[#353229] text-white px-6 py-2 rounded hover:bg-[#353229]/90 transition-all cursor-pointer">
+                <button className="bg-[#1a1a1a] text-white px-6 py-2 rounded hover:bg-[#1a1a1a]/90 transition-all cursor-pointer">
                   {cta.label}
                 </button>
               </a>

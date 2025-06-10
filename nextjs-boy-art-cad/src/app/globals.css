@@ -2,12 +2,12 @@
 
 :root {
   --background: #f1f0e7;
-  --foreground: #353229;
+  --foreground: #1a1a1a;
   --urban-white: #f1f0e7;
 }
 
 html.dark {
-  --background: #353229;
+  --background: #1a1a1a;
   --foreground: #f1f0e7;
 }
 

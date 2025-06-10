@@ -54,7 +54,7 @@ export default async function CollectionShowPage({params}: Props) {
       <div className="collections-show-container">
         <div className="collections-show-grid">
           <Link href="/collection">
-            <div className="backBtn-wrapper bg-[#353229] p-2 rounded text-[#f1f0e7] flex gap-2 cursor-pointer">
+            <div className="backBtn-wrapper bg-[#1a1a1a] p-2 rounded text-[#f1f0e7] flex gap-2 cursor-pointer">
               {' '}
               <ArrowLeft color="#f1f0e7" size={24} />
               Retour

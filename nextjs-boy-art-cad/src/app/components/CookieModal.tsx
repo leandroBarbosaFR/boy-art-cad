@@ -58,7 +58,7 @@ export default function CookieModal() {
           <PortableText value={cookies.body} />
         </div>
         <button
-          className="bg-[#353229] cursor-pointer text-white px-4 py-2 rounded hover:bg-[#353229ec] transition"
+          className="bg-[#1a1a1a] cursor-pointer text-white px-4 py-2 rounded hover:bg-[#1a1a1aec] transition"
           onClick={handleAcceptCookies}
         >
           Accepter et continuer

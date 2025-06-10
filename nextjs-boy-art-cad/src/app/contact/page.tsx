@@ -55,13 +55,13 @@ export default async function ContactPage() {
         )}
       </div> */}
         {/* Title */}
-        <h1 className=" font-bold text-4xl text-[#353229] title-contact">{data.title}</h1>
+        <h1 className=" font-bold text-4xl text-[#1a1a1a] title-contact">{data.title}</h1>
 
         {/* Subtitle */}
-        <h2 className="text-xl font-bold text-[#353229] subtitle-contact">{data.subtitle}</h2>
+        <h2 className="text-xl font-bold text-[#1a1a1a] subtitle-contact">{data.subtitle}</h2>
 
         {/* Body */}
-        <div className="text-[#353229] body-contact">
+        <div className="text-[#1a1a1a] body-contact">
           <PortableText value={data.body} />
         </div>
 

@@ -83,7 +83,7 @@ export default function CollectionSection({data}: CollectionSectionProps) {
               className="btn-wrapper-collection inline-block px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition cursor-pointer"
             >
               Voir toutes les collections
-              <ArrowRight color="#353229" size={24} />
+              <ArrowRight color="#1a1a1a" size={24} />
             </Link>
           </div>
         </div>

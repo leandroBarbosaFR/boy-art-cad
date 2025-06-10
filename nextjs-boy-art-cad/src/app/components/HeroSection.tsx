@@ -102,7 +102,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
         <div className="hero-cta" ref={ctaRef}>
           {cta?.label && (
             <a href={cta.url} target="_blank" rel="noopener noreferrer">
-              <button className="flex gap-2 bg-[#353229] text-[#f1f0e7] px-6 py-2 rounded hover:bg-[#353229]/90 transition-all cursor-pointer">
+              <button className="flex gap-2 bg-[#1a1a1a] text-[#f1f0e7] px-6 py-2 rounded hover:bg-[#1a1a1a]/90 transition-all cursor-pointer">
                 {cta.label}
               </button>
             </a>

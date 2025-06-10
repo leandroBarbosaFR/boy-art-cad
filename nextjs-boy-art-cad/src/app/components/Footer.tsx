@@ -45,7 +45,7 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="bg-[transparent] text-[#353229]">
+    <footer className="bg-[transparent] text-[#1a1a1a]">
       <div className="px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo / Brand */}
@@ -60,7 +60,7 @@ export default function Footer() {
               <Link
                 key={link._key}
                 href={link.internal?.slug?.current ? `/${link.internal.slug.current}` : '#'}
-                className="px-4 py-2 text-[#353229] hover:bg-[#353229] hover:text-white rounded-lg transition whitespace-nowrap"
+                className="px-4 py-2 text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white rounded-lg transition whitespace-nowrap"
                 target={link.openInNewTab ? '_blank' : '_self'}
               >
                 {link.text}

@@ -51,16 +51,16 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className="space-y-4 w-full bg-[#f1f0e7] p-4 sm:p-8 rounded-lg shadow-md"
     >
-      {/* <h1 className="text-3xl text-[#353229] font-bold mb-6 text-center">Contactez-nous</h1> */}
+      {/* <h1 className="text-3xl text-[#1a1a1a] font-bold mb-6 text-center">Contactez-nous</h1> */}
 
       {/* Feedback message */}
       {status === 'success' && (
-        <div className="bg-green-100 text-[#353229] border border-green-300 p-4 rounded-md text-sm text-center">
+        <div className="bg-green-100 text-[#1a1a1a] border border-green-300 p-4 rounded-md text-sm text-center">
           Merci de nous avoir contactés !
         </div>
       )}
       {status === 'error' && (
-        <div className="bg-red-100 text-[#353229] border border-red-300 p-4 rounded-md text-sm text-center">
+        <div className="bg-red-100 text-[#1a1a1a] border border-red-300 p-4 rounded-md text-sm text-center">
           Une erreur est survenue. Veuillez réessayer.
         </div>
       )}
@@ -77,12 +77,12 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full p-2 border text-[#353229] border-gray-300 rounded"
+          className="w-full p-2 border text-[#1a1a1a] border-gray-300 rounded"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="text-[#353229] block font-semibold mb-1">
+        <label htmlFor="email" className="text-[#1a1a1a] block font-semibold mb-1">
           Adresse mail:
         </label>
         <input
@@ -97,7 +97,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-[#353229] font-semibold mb-1">
+        <label htmlFor="phone" className="block text-[#1a1a1a] font-semibold mb-1">
           Téléphone:
         </label>
         <input
@@ -112,7 +112,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-[#353229] font-semibold mb-1">
+        <label htmlFor="message" className="block text-[#1a1a1a] font-semibold mb-1">
           Message:
         </label>
         <textarea
@@ -128,7 +128,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="w-full px-4 py-2 bg-[#353229] text-[#f1f0e7] rounded hover:bg-[#333] cursor-pointer"
+        className="w-full px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded hover:bg-[#333] cursor-pointer"
       >
         Envoyer
       </button>

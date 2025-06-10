@@ -76,7 +76,7 @@ export default async function AboutPage() {
         <div className="title-about">
           <h1 className="text-4xl font-bold">{data.title}</h1>
         </div>
-        <div className="text-[#353229] body-about">
+        <div className="text-[#1a1a1a] body-about">
           <PortableTextRenderer value={data.body} />
         </div>
         {data.cta && (
@@ -89,7 +89,7 @@ export default async function AboutPage() {
                 {data.cta.link?.internal?.slug?.current ? (
                   <Link
                     href={`/${data.cta.link.internal.slug.current}`}
-                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#353229] rounded cursor-pointer cta-about"
+                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#1a1a1a] rounded cursor-pointer cta-about"
                   >
                     {data.cta.link.internal.title || 'Contactez-nous'}
                   </Link>
@@ -98,7 +98,7 @@ export default async function AboutPage() {
                     href={data.cta.link.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#353229] rounded cta-about cursor-pointer"
+                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#1a1a1a] rounded cta-about cursor-pointer"
                   >
                     {data.cta.link.title || 'Contactez-nous'}
                   </a>
