@@ -142,7 +142,7 @@ export default function Header() {
               href="/contact"
               className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
             >
-              Contact
+              Prendre contact
             </Link>
           </div>
 
