@@ -42,7 +42,7 @@ export const aboutType = defineType({
         }),
         defineField({
           name: 'link',
-          type: 'links',
+          type: 'link',
           title: 'Lien',
         }),
       ],

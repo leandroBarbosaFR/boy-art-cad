@@ -1,7 +1,7 @@
 import {defineType, defineField} from 'sanity'
 
 export const link = defineType({
-  name: 'links',
+  name: 'link',
   title: 'Lien',
   type: 'object',
   fields: [
@@ -15,7 +15,7 @@ export const link = defineType({
       name: 'internal',
       title: 'Lien interne',
       type: 'reference',
-      to: [{type: 'contact'}, {type: 'about'}, {type: 'pages'}],
+      to: [{type: 'contact'}, {type: 'about'}, {type: 'pages'}, {type: 'collectionsIndex'}, {type: 'category'}],
     }),
     defineField({
       name: 'external',

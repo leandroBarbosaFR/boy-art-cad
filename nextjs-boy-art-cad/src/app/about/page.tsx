@@ -1,12 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
 // import {PortableText} from '@portabletext/react'
-import {client} from '../../sanity/client'
-import {urlFor} from '../../lib/sanityImage'
+import { client } from '../../sanity/client'
+import { urlFor } from '../../lib/sanityImage'
 import Link from 'next/link'
 import '../styles/aboutPage.css'
 import PortableTextRenderer from '../components/PortableTextRenderer'
 import CrabSvg from '../components/CrabSvg'
+export const dynamic = 'force-dynamic'
 
 const query = `*[_type == "about"][0] {
   _createdAt,
@@ -57,22 +58,22 @@ export default async function AboutPage() {
       <div className="aboutSection-bg-section">
         <CrabSvg />
       </div>
-      {data.image?.asset && (
-        <div className="relative w-full h-[400px]">
-          <Image
-            src={urlFor(data.image.asset).width(7172).url()}
-            alt={data.title}
-            fill
-            quality={100}
-            priority
-            // width={800}
-            // height={400}
-            style={{objectFit: 'cover'}}
-            className="rounded-xl shadow-lg absolute"
-          />
-        </div>
-      )}
       <div className="about-page-grid">
+        <div className='image-wrapper'>
+          {data.image?.asset && (
+              <Image
+                src={urlFor(data.image.asset).width(7172).url()}
+                alt={data.title}
+                // fill
+                quality={100}
+                priority
+                width={800}
+                height={400}
+                style={{ objectFit: 'cover' }}
+               
+              />
+          )}
+        </div>
         <div className="title-about">
           <h1 className="text-4xl font-bold">{data.title}</h1>
         </div>

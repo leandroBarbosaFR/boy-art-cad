@@ -1,6 +1,7 @@
 import Layout from '../app/components/Layout'
 import {client} from '../sanity/client'
 // import ThemeToggle from './components/ThemeToggle'
+export const dynamic = 'force-dynamic'
 
 import './globals.css'
 

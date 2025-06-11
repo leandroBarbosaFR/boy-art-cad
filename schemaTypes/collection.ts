@@ -11,6 +11,13 @@ export const collection = defineType({
       title: 'Titre de la collection',
     }),
     defineField({
+      name: 'category',
+      type: 'reference',
+      title: 'Catégorie',
+      to: [{type: 'category'}],
+      description: 'Choisissez une catégorie pour cette collection',
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',

@@ -5,6 +5,7 @@ import PortableTextRenderer from '../components/PortableTextRenderer'
 import type {PortableTextBlock} from '@portabletext/types'
 import '../styles/legalPages.css'
 import CrabSvg from '../components/CrabSvg'
+export const dynamic = 'force-dynamic'
 
 interface PageData {
   title: string

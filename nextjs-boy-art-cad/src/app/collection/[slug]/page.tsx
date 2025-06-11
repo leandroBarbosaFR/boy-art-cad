@@ -5,6 +5,7 @@ import {PortableText} from '@portabletext/react'
 import '../../styles/collectionsShow.css'
 import Link from 'next/link'
 import {ArrowLeft} from 'lucide-react'
+export const dynamic = 'force-dynamic'
 
 const query = groq`
 *[_type == "collection" && slug.current == $slug][0]{

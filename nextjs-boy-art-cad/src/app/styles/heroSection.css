@@ -1,43 +1,52 @@
 .hero-title {
-  color: transparent;
-  background: linear-gradient(to top, #dfded6, #f1f0e7);
+  color: #1a1a1a;
+  /* background: linear-gradient(to top, #dfded6, #f1f0e7);
   -webkit-background-clip: text;
-  background-clip: text;
-  font-weight: 700;
+  background-clip: text; */
+  font-weight: 500;
   grid-row: 2;
   text-wrap: wrap;
-  grid-column: 2 / 8;
-  font-size: 112px;
+  grid-column: 2 / 7;
+  font-size: 72px;
+  line-height: 76px;
   text-align: flex-start;
 }
 
+.image-hero-wrapper {
+  grid-column: 7/12;
+  grid-row: 1/5;
+  position: unset;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 .hero-section-wrapper {
-  height: 100vh;
+  height: 90vh;
 }
 
 .hero-subtitle {
   font-weight: 400;
-  color: var(--urban-white);
+  color: #1a1a1a;
   font-family: var(--font-geist);
   grid-row: 1;
-  grid-column: 2/8;
+  grid-column: 2 / 7;
   justify-self: flex-start;
   font-size: 16px;
 }
 
 .hero-body {
   font-weight: 400;
-  color: var(--urban-white);
+  color: #1a1a1a;
   font-family: var(--font-geist-mono);
   grid-row: 3;
-  grid-column: 2/8;
+  grid-column: 2 / 7;
   font-size: 24px;
   justify-self: flex-start;
 }
 
 .hero-cta {
   grid-row: 4;
-  grid-column: 2/8;
+  grid-column: 2 / 7;
   justify-self: flex-start;
 }
 
@@ -45,33 +54,53 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-row-gap: 20px;
-  top: 50%;
+  grid-column-gap: 20px;
+  top: 60%;
   left: 0;
   transform: translate(0%, -50%);
 }
 
 @media (max-width: 768px) {
   .hero-title {
-    color: var(--urban-white);
+   color: #1a1a1a;
     font-size: 35px;
-    grid-column: 2/13;
+    line-height: 39px;
+    grid-column: 1/12;
+    grid-row: 3;
+  }
+
+  .hero-section-wrapper {
+    height: 100vh;
+  }
+
+  .image-hero-wrapper {
+    grid-column: 1/13;
+    grid-row: 2;
+    height: fit-content;
+    overflow: hidden;
+    margin: 0;
   }
 
   .hero-subtitle {
     font-weight: 400;
-    color: var(--urban-white);
+    color: #1a1a1a;
     font-size: 16px;
-    grid-column: 2/13;
+    line-height: 19px;
+    grid-column: 1/12;
+    grid-row: 1;
+    margin-top: 0px;
   }
 
   .hero-body {
     font-size: 16px;
-    grid-column: 2/13;
+    line-height: 19px;
+    grid-column: 1/12;
+    grid-row: 4;
   }
 
   .hero-cta {
-    grid-row: 4;
-    grid-column: 2/12;
+    grid-row: 5;
+    grid-column: 1/12;
     justify-self: flex-start;
   }
 
@@ -79,49 +108,76 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-row-gap: 20px;
+    padding: 0px 15px;
+    top: 55%;
+  }
+
+  .hero-section-wrapper {
+    height: 100vh;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .hero-title {
-    color: var(--urban-white);
-    font-size: 100px;
+    color: #1a1a1a;
+    font-size: 60px;
+    line-height: 66px;
+    grid-column: 1/9;
+    grid-row: 2;
+  }
+
+  .hero-section-wrapper {
+    height: 100vh;
+  }
+
+  .image-hero-wrapper {
+    grid-column: 9/13;
+    grid-row: 1/4;
+    height: fit-content;
+    overflow: hidden;
+    margin: 0;
   }
 
   .hero-subtitle {
     font-weight: 400;
-    color: var(--urban-white);
-    font-size: 24px;
+    color: #1a1a1a;
+    font-size: 20px;
+    grid-column: 1/9;
+    grid-row: 1;
   }
 
   .hero-body {
-    font-size: 32px;
+    font-size: 20px;
+    grid-column: 1/9;
+    grid-row: 3;
   }
 
   .hero-section-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-row-gap: 20px;
+   
   }
 }
 
-@media (min-width: 1039px) and (max-width: 1536px) {
+@media (min-width: 1024px) and (max-width: 1536px) {
   .hero-title {
-    color: var(--urban-white);
-    font-size: 70px;
-    grid-column: 2 / 10;
+     color: #1a1a1a;
+    font-size: 60px;
+    grid-column: 2 / 7;
+    line-height: 66px;
   }
 
   .hero-subtitle {
     font-weight: 400;
-    color: var(--urban-white);
+     color: #1a1a1a;
     font-size: 16px;
-    grid-column: 2 / 10;
+    grid-column: 2 / 7;
   }
 
   .hero-body {
-    font-size: 24px;
-    grid-column: 2 / 10;
+    font-size: 20px;
+    grid-column: 2 / 7;
   }
 
   .hero-section-container {

@@ -9,7 +9,7 @@ export const footerType = defineType({
       name: 'links',
       title: 'Liens',
       type: 'array',
-      of: [{type: 'links'}],
+      of: [{type: 'link'}],
     }),
   ],
 })
