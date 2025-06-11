@@ -69,6 +69,10 @@
     grid-row: 3;
   }
 
+  .hero-section-wrapper {
+    height: 100vh;
+  }
+
   .image-hero-wrapper {
     grid-column: 1/13;
     grid-row: 2;
@@ -118,31 +122,41 @@
     color: #1a1a1a;
     font-size: 60px;
     line-height: 66px;
+    grid-column: 1/9;
+    grid-row: 2;
+  }
+
+  .hero-section-wrapper {
+    height: 100vh;
   }
 
   .image-hero-wrapper {
-    grid-column: 1/13;
-    grid-row: 1;
+    grid-column: 9/13;
+    grid-row: 1/4;
     height: fit-content;
     overflow: hidden;
-    margin: 200px 0 0 0;
+    margin: 0;
   }
 
   .hero-subtitle {
     font-weight: 400;
     color: #1a1a1a;
     font-size: 20px;
+    grid-column: 1/9;
+    grid-row: 1;
   }
 
   .hero-body {
     font-size: 20px;
+    grid-column: 1/9;
+    grid-row: 3;
   }
 
   .hero-section-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-row-gap: 20px;
-    top: 90%;
+   
   }
 }
 
