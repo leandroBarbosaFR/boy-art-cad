@@ -4,6 +4,7 @@ import TextImageSection from '../components/TextImageSection'
 import HeroSection from '../components/HeroSection'
 import ImageSection from '../components/ImageSection'
 import CollectionSection from '../components/CollectionSection'
+import EmbedSection from './EmbedSection'
 
 type Block = {
   _key: string
@@ -11,9 +12,12 @@ type Block = {
   title?: string
   subtitle?: string
   body?: PortableTextBlock[]
+  embed?: string
   cta?: {
     label?: string
-    url?: string
+    urlType?: 'internal' | 'external'
+    internalLink?: string
+    externalUrl?: string
   }
   image?: {
     asset: {
@@ -54,6 +58,16 @@ export default function Layout({blocks}: {blocks: Block[]}) {
         switch (block._type) {
           case 'textImageSection':
             return <TextImageSection key={block._key} data={block} />
+          case 'embedSection':
+            return (
+              <EmbedSection
+                key={block._key}
+                data={{
+                  title: block.title,
+                  embed: block.embed,
+                }}
+              />
+            )
           case 'collectionSection':
             return (
               <CollectionSection
@@ -82,8 +96,13 @@ export default function Layout({blocks}: {blocks: Block[]}) {
                   title: block.title,
                   subtitle: block.subtitle,
                   body: block.body,
-                  image: block.image,
-                  cta: block.cta,
+                  images: block.images || [],
+                  cta: {
+                    label: block.cta?.label,
+                    urlType: block.cta?.urlType,
+                    internalLink: block.cta?.internalLink,
+                    externalUrl: block.cta?.externalUrl,
+                  },
                 }}
               />
             )

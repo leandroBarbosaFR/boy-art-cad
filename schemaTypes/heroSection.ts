@@ -24,9 +24,29 @@ export const heroSection = defineType({
       of: [{type: 'block'}],
     }),
     defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
+      name: 'images',
+      title: 'Images du carousel',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Légende',
+            },
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Texte alternatif',
+              validation: (rule) =>
+                rule.required().error("Le texte alternatif est requis pour l'accessibilité"),
+            },
+          ],
+        },
+      ],
+      validation: (rule) => rule.min(1).max(5).error('Veuillez ajouter entre 1 et 5 images'),
     }),
     defineField({
       name: 'cta',
@@ -39,11 +59,45 @@ export const heroSection = defineType({
           title: 'Texte du bouton',
         }),
         defineField({
-          name: 'url',
+          name: 'urlType',
+          type: 'string',
+          title: 'Type de lien',
+          options: {
+            list: [
+              {title: 'Lien interne', value: 'internal'},
+              {title: 'Lien externe', value: 'external'},
+            ],
+            layout: 'radio',
+            direction: 'horizontal',
+          },
+        }),
+        defineField({
+          name: 'internalLink',
+          type: 'string',
+          title: 'Page interne (ex: /contact)',
+          hidden: ({parent}) => parent?.urlType !== 'internal',
+        }),
+        defineField({
+          name: 'externalUrl',
           type: 'url',
-          title: 'Lien',
+          title: 'Lien externe',
+          hidden: ({parent}) => parent?.urlType !== 'external',
         }),
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'subtitle',
+      media: 'images.0', // Utilise la première image comme preview
+    },
+    prepare({title, subtitle, media}) {
+      return {
+        title: title || 'Hero Section',
+        subtitle: subtitle || 'Pas de sous-titre',
+        media,
+      }
+    },
+  },
 })

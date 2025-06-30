@@ -13,6 +13,23 @@
   border-radius: 10px;
 } */
 
+@layer utilities {
+  .slide-in-from-bottom-2 {
+    animation: slideInFromBottom 0.3s ease-out;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
 .title-contact {
   grid-column: 1/13;
   grid-row: 1;
@@ -37,9 +54,9 @@
 }
 
 @media (max-width: 768px) {
-.contact-page-container {
-  padding: 100px 15px;
-}
+  .contact-page-container {
+    padding: 100px 15px;
+  }
 
   .title-contact {
     grid-column: 1/13;

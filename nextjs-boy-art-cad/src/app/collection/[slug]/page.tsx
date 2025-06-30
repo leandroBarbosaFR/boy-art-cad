@@ -1,3 +1,4 @@
+// src/app/collection/[slug]/page.tsx
 import {groq} from 'next-sanity'
 import {client} from '../../../sanity/client'
 import Image from 'next/image'
@@ -5,31 +6,32 @@ import {PortableText} from '@portabletext/react'
 import '../../styles/collectionsShow.css'
 import Link from 'next/link'
 import {ArrowLeft} from 'lucide-react'
+
 export const dynamic = 'force-dynamic'
 
 const query = groq`
-*[_type == "collection" && slug.current == $slug][0]{
-  title,
-  subtitle,
-  description,
-  "mainImageUrl": mainImage.asset->url,
-  mainImage {
-    alt
-  },
-  images[] {
-    _key,
-    alt,
-    image {
+  *[_type == "collection" && slug.current == $slug][0]{
+    title,
+    subtitle,
+    description,
+    "mainImageUrl": mainImage.asset->url,
+    mainImage {
+      alt
+    },
+    images[] {
+      _key,
       alt,
-      title,
-      "url": asset->url
+      image {
+        alt,
+        title,
+        "url": asset->url
+      }
     }
   }
-}
 `
+
 interface CollectionImage {
   _key: string
-  url: string
   alt?: string
   image: {
     url: string | null
@@ -56,24 +58,25 @@ export default async function CollectionShowPage({params}: Props) {
         <div className="collections-show-grid">
           <Link href="/collection">
             <div className="backBtn-wrapper bg-[#1a1a1a] p-2 rounded text-[#f1f0e7] flex gap-2 cursor-pointer">
-              {' '}
               <ArrowLeft color="#f1f0e7" size={24} />
               Retour
             </div>
           </Link>
+
           <p className="text-lg text-gray-600 show-subtitle">{data.subtitle}</p>
           <h1 className="text-3xl font-bold show-title">{data.title}</h1>
-          <div className="image-show-collections-wrapper">
-            {data.mainImageUrl && (
+
+          {data.mainImageUrl && (
+            <div className="image-show-collections-wrapper">
               <Image
                 src={data.mainImageUrl}
-                alt={data.mainImage?.alt || ''}
+                alt={data.mainImage?.alt || 'Image principale de la collection'}
                 width={800}
                 height={500}
                 className="rounded mb-6"
               />
-            )}
-          </div>
+            </div>
+          )}
 
           <div className="prose max-w-none mb-8 show-description">
             <PortableText value={data.description} />
@@ -84,17 +87,20 @@ export default async function CollectionShowPage({params}: Props) {
               <h2 className="text-2xl font-semibold mb-4 title-images-bottom">
                 Images de la collection
               </h2>
+
               <div className="image-bottom-wrapper">
-                {data.images.map((img: CollectionImage) => (
-                  <Image
-                    key={img._key}
-                    src={img.image.url || ''}
-                    alt={img.image.alt || img.alt || ''}
-                    width={500}
-                    height={400}
-                    className="object-cover rounded images-bottom-item"
-                  />
-                ))}
+                {data.images.map((img: CollectionImage) =>
+                  img.image?.url ? (
+                    <Image
+                      key={img._key}
+                      src={img.image.url}
+                      alt={img.image.alt || img.alt || 'Image de la collection'}
+                      width={500}
+                      height={400}
+                      className="object-cover rounded images-bottom-item"
+                    />
+                  ) : null,
+                )}
               </div>
             </>
           )}

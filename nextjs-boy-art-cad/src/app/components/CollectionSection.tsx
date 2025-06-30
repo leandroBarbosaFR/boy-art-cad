@@ -41,11 +41,11 @@ export default function CollectionSection({data}: CollectionSectionProps) {
       <div className="collectionSection-container">
         <div className="grid-text-section-collection">
           <div className="heading-wrapper-collection">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[36px] text-[#fff]">
-              {title}
-            </h1>
+            <h1 className="collection-main-title">{title}</h1>
           </div>
+
           <div className="hero-body-collection">{body && <PortableText value={body} />}</div>
+
           {collections.length > 0 && (
             <div className="collection-items">
               {collections.map((collection) => {
@@ -62,28 +62,26 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                         src={collection.mainImage.asset.url}
                         alt={collection.mainImage.alt || collection.title}
                         fill
-                        quality={100}
-                        objectFit="cover"
+                        quality={90}
                         className="image-collection"
+                        priority={collections.indexOf(collection) < 3}
                       />
                     </div>
 
-                    <h2 className="font-bold">{collection.title}</h2>
-                    <p>{collection.dimensions}</p>
-                    {collection.price && <p>{collection.price} €</p>}
+                    <h2 className="collection-item-title">{collection.title}</h2>
+                    <p className="collection-dimensions">{collection.dimensions}</p>
+                    {collection.price && <p className="collection-price">{collection.price} €</p>}
                   </Link>
                 )
               })}
             </div>
           )}
+
           {/* CTA Button */}
-          <div className="mt-6 cta-button-wrapper">
-            <Link
-              href="/collection"
-              className="btn-wrapper-collection inline-block px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition cursor-pointer"
-            >
+          <div className="cta-button-wrapper">
+            <Link href="/collection" className="btn-wrapper-collection">
               Voir toutes les collections
-              <ArrowRight color="#1a1a1a" size={24} />
+              <ArrowRight color="#1a1a1a" size={20} />
             </Link>
           </div>
         </div>

@@ -8,10 +8,6 @@ import './globals.css'
 export default async function HomePage() {
   const data = await client.fetch(`*[_type == "landingPage"][0]{
   _id,
-  _createdAt,
-  _updatedAt,
-  _rev,
-  _type,
   title,
   subtitle,
   layout[]{
@@ -20,7 +16,33 @@ export default async function HomePage() {
     title,
     subtitle,
     body,
-        collections[]->{
+    embed,
+    cta {
+      label,
+      urlType,
+      internalLink,
+      externalUrl
+    },
+    image {
+      asset->{
+        _id,
+        url,
+        metadata
+      },
+      alt
+    },
+    images[]{
+      _key,
+      _type,
+      alt,
+      caption,
+      asset->{
+        _id,
+        url,
+        metadata
+      }
+    },
+    collections[]->{
       _id,
       _type,
       title,
@@ -33,35 +55,12 @@ export default async function HomePage() {
         asset->{
           _id,
           url,
-          metadata,
-          alt
+          metadata
         },
         alt
-      },
-    },
-    images[]{
-      _key,
-      _type,
-      asset->{
-        _id,
-        url,
-        metadata
-      },
-      alt
-    },
-    cta {
-      label,
-      url
-    },
-    image {
-      asset->{
-        _id,
-        url,
-        metadata
-      },
-      alt
-    },
-  },
+      }
+    }
+  }
 }`)
 
   const layout = data?.layout || []

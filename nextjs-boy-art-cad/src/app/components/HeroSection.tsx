@@ -1,12 +1,12 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
-import { PortableText } from '@portabletext/react'
-import type { PortableTextBlock } from '@portabletext/types'
+import React, {useEffect, useRef, useState} from 'react'
+import {PortableText} from '@portabletext/react'
+import type {PortableTextBlock} from '@portabletext/types'
 import Image from 'next/image'
-import { urlFor } from '../../lib/sanityImage'
 import '../styles/heroSection.css'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import TextSlider from './TextSlider'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -17,112 +17,265 @@ interface HeroSectionProps {
     body?: PortableTextBlock[]
     cta?: {
       label?: string
-      url?: string
+      urlType?: 'internal' | 'external'
+      internalLink?: string
+      externalUrl?: string
     }
-    image?: {
+    images?: Array<{
       asset: {
         _id: string
         url: string
       }
       alt?: string
-    }
+      caption?: string
+    }>
   }
 }
 
-export default function HeroSection({ data }: HeroSectionProps) {
-  const headingRef = useRef(null)
-  const subtitleRef = useRef(null)
-  const bodyRef = useRef(null)
-  const ctaRef = useRef(null)
-  const imageRef = useRef(null)
+export default function HeroSection({data}: HeroSectionProps) {
+  const heroRef = useRef(null)
+  const contentRef = useRef(null)
+  const carouselRef = useRef(null)
 
+  const finalUrl = data.cta?.urlType === 'internal' ? data.cta.internalLink : data.cta?.externalUrl
+
+  // Carousel state
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  // Prepare images array
+  const images = data.images || []
+  const totalImages = images.length
+
+  // Auto-advance carousel
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: 'top 85%',
-      },
-    })
+    if (!isAutoPlaying || totalImages <= 1) return
 
-    tl.from(headingRef.current, {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-    })
-      .from(subtitleRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-      }, "-=0.4")
-      .from(bodyRef.current, {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-      }, "-=0.3")
-      .from(ctaRef.current, {
-        scale: 0.95,
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-      }, "-=0.3")
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalImages)
+    }, 4000)
 
-    gsap.from(imageRef.current, {
-      x: 100,
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: 'top 85%',
-      },
-    })
+    return () => clearInterval(interval)
+  }, [isAutoPlaying, totalImages])
+
+  // GSAP animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top 85%',
+        },
+      })
+
+      tl.from('.hero-title', {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+        .from(
+          '.hero-subtitle',
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          },
+          '-=0.4',
+        )
+        .from(
+          '.hero-body',
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+          },
+          '-=0.3',
+        )
+        .from(
+          '.hero-cta',
+          {
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+          },
+          '-=0.3',
+        )
+
+      if (carouselRef.current) {
+        gsap.from(carouselRef.current, {
+          x: 100,
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: carouselRef.current,
+            start: 'top 85%',
+          },
+        })
+      }
+    }, heroRef)
+
+    return () => ctx.revert()
   }, [])
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index)
+  }
+
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalImages) % totalImages)
+  }
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalImages)
+  }
 
   const heading = data.title || ''
   const subtitle = data.subtitle || ''
   const body = data.body || []
-  const image = data.image?.asset?.url
   const cta = data.cta
 
   return (
-    <section className="relative h-screen hero-section-wrapper">
-      <div className="hero-section-container absolute z-20 justify-items-center">
-        <h1 className="hero-title" ref={headingRef}>
-          {heading}
-        </h1>
-        <div className="hero-subtitle" ref={subtitleRef}>
-          <h3>{subtitle}</h3>
+    <section className="hero-section" ref={heroRef}>
+      <div className="hero-grid">
+        {/* Content Area */}
+        <div className="hero-content" ref={contentRef}>
+          <div
+            className="hero-subtitle"
+            style={{
+              background: 'rgba(0, 0, 0, 0.1)',
+              padding: '0.5rem 1rem',
+              width: 'fit-content',
+              borderRadius: '1.5rem',
+            }}
+          >
+            <span>{subtitle}</span>
+          </div>
+
+          <h1 className="hero-title">
+            <TextSlider text={heading} />
+          </h1>
+
+          <div className="hero-body">
+            <PortableText value={body} />
+          </div>
+
+          <div className="hero-cta">
+            {cta?.label && (
+              <a
+                href={finalUrl}
+                target={data.cta?.urlType === 'external' ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+              >
+                <button className="hero-cta-button">{data.cta?.label}</button>
+              </a>
+            )}
+          </div>
         </div>
-        <div className="hero-body" ref={bodyRef}>
-          <PortableText value={body} />
-        </div>
-        <div className="hero-cta" ref={ctaRef}>
-          {cta?.label && (
-            <a href={cta.url} target="_blank" rel="noopener noreferrer">
-              <button className="flex gap-2 bg-[#1a1a1a] text-[#f1f0e7] px-6 py-2 rounded hover:bg-[#1a1a1a]/90 transition-all cursor-pointer">
-                {cta.label}
-              </button>
-            </a>
-          )}
-        </div>
-        <div className='image-hero-wrapper'
-          ref={imageRef}
-        >
-          {image && (
-            <Image
-              src={urlFor(data.image).width(7172).url()}
-              alt="Hero image"
-              width={7172}
-              height={7172}
-              style={{ objectFit: 'cover' }}
-              quality={100}
-              priority
-            />
-          )}
-        </div>
+
+        {/* Carousel Area */}
+        {totalImages > 0 && (
+          <div
+            className="hero-carousel"
+            ref={carouselRef}
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            <div className="carousel-container">
+              <div
+                className="carousel-track"
+                style={{transform: `translateX(-${currentSlide * 100}%)`}}
+              >
+                {images.map((image, index) => (
+                  <div key={image.asset._id || index} className="carousel-slide">
+                    <div className="carousel-image-wrapper">
+                      {/* Background blurred layer */}
+                      <div
+                        className="carousel-image-bg"
+                        style={{
+                          backgroundImage: `url(${image.asset.url})`,
+                        }}
+                      />
+                      {/* Foreground image */}
+                      <Image
+                        src={image.asset.url}
+                        alt={image.alt || `Hero image ${index + 1}`}
+                        width={800}
+                        height={600}
+                        className="carousel-image"
+                        quality={90}
+                        priority={index === 0}
+                        style={{
+                          objectFit: 'contain',
+                          maxHeight: '100%',
+                          maxWidth: '100%',
+                          zIndex: 2,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Navigation */}
+              {totalImages > 1 && (
+                <>
+                  <button
+                    onClick={goToPrevious}
+                    className="carousel-nav carousel-prev"
+                    aria-label="Previous image"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={goToNext}
+                    className="carousel-nav carousel-next"
+                    aria-label="Next image"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Dots */}
+            {totalImages > 1 && (
+              <div className="carousel-dots">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )

@@ -5,7 +5,6 @@ import type {PortableTextBlock} from '@portabletext/types'
 import Image from 'next/image'
 import {urlFor} from '../../lib/sanityImage'
 import '../styles/textImageSection.css'
-import CrabSvg from '../components/CrabSvg'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
@@ -32,44 +31,66 @@ interface TextImageSectionProps {
 
 export default function TextImageSection({data}: TextImageSectionProps) {
   const sectionRef = useRef(null)
-  const bodyRef = useRef(null)
+  const contentRef = useRef(null)
+  const imageRef = useRef(null)
 
   useEffect(() => {
-    const el = sectionRef.current
-    if (!el) return
-
-    gsap.fromTo(
-      el,
-      {autoAlpha: 0, y: 100},
-      {
-        autoAlpha: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+    const ctx = gsap.context(() => {
+      // Section entrance animation
+      gsap.fromTo(
+        sectionRef.current,
+        {autoAlpha: 0, y: 50},
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
         },
-      }
-    )
+      )
 
-     // Slide body from right to left
-    gsap.fromTo(
-      bodyRef.current,
-      { x: 100, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: bodyRef.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+      // Content animation
+      gsap.fromTo(
+        '.text-content-item',
+        {x: -50, opacity: 0},
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
         },
-      }
-    )
+      )
+
+      // Image animation
+      gsap.fromTo(
+        imageRef.current,
+        {x: 100, opacity: 0, scale: 0.9},
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        },
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
   }, [])
 
   const heading = data.title || ''
@@ -79,45 +100,56 @@ export default function TextImageSection({data}: TextImageSectionProps) {
   const cta = data.cta
 
   return (
-    <section ref={sectionRef} className="textImgSection-wrapper">
-      <div className="textImageSection-bg-section">
-        <CrabSvg />
-      </div>
-      <div className="textImgSection-container">
-        <div className="grid-text-section">
-          <div className="heading-wrapper">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px]">
-              {heading}
-            </h1>
-          </div>
-          <div className="subtitle-wrapper">
-            <h3>{subtitle}</h3>
-          </div>
-          <div ref={bodyRef} className="body-wrapper">
-            <PortableText value={body} />
-          </div>
-          <div className="cta-wrapper">
+    <section ref={sectionRef} className="textImg-section">
+      <div className="textImg-background"></div>
+
+      <div className="textImg-container">
+        <div className="textImg-grid">
+          {/* Content Area */}
+          <div className="textImg-content" ref={contentRef}>
+            {subtitle && (
+              <div className="textImg-subtitle text-content-item">
+                <h3>{subtitle}</h3>
+              </div>
+            )}
+
+            {heading && (
+              <div className="textImg-title text-content-item">
+                <h1>{heading}</h1>
+              </div>
+            )}
+
+            {body.length > 0 && (
+              <div className="textImg-body text-content-item">
+                <PortableText value={body} />
+              </div>
+            )}
+
             {cta?.label && (
-              <a href={cta.url} target="_blank" rel="noopener noreferrer">
-                <button className="bg-[#1a1a1a] text-white px-6 py-2 rounded hover:bg-[#1a1a1a]/90 transition-all cursor-pointer">
-                  {cta.label}
-                </button>
-              </a>
+              <div className="textImg-cta text-content-item">
+                <a href={cta.url} target="_blank" rel="noopener noreferrer">
+                  <button className="textImg-cta-button">{cta.label}</button>
+                </a>
+              </div>
             )}
           </div>
-          <div className="image-wrapper">
-            {image && (
-              <Image
-                width={3419}
-                height={3564}
-                src={urlFor(data.image).width(3419).url()}
-                alt="text image section"
-                quality={100}
-                priority
-                className="image-section"
-              />
-            )}
-          </div>
+
+          {/* Image Area */}
+          {image && (
+            <div className="textImg-image-wrapper" ref={imageRef}>
+              <div className="textImg-image-container">
+                <Image
+                  src={urlFor(data.image).width(800).url()}
+                  alt={data.image?.alt || 'Section image'}
+                  width={800}
+                  height={600}
+                  quality={90}
+                  priority
+                  className="textImg-image"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
