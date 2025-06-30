@@ -29,7 +29,6 @@ interface ImageSectionProps {
 export default function ImageSection({data}: ImageSectionProps) {
   const hasMounted = useHasMounted()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
   const heading = data.title || ''
   const validImages = data.images?.filter((img) => img.asset?._ref || img.asset?._id) || []
@@ -53,17 +52,15 @@ export default function ImageSection({data}: ImageSectionProps) {
   const maxIndex = Math.max(0, totalImages - cardsPerView)
 
   useEffect(() => {
-    if (!isAutoPlaying || totalImages <= cardsPerView) return
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [isAutoPlaying, totalImages, cardsPerView, maxIndex])
+    setCurrentIndex(0)
+  }, [cardsPerView])
 
   const goToPrevious = () => setCurrentIndex((prev) => Math.max(0, prev - 1))
   const goToNext = () => setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
 
   if (!hasMounted || totalImages === 0) return null
+
+  const safeIndex = Math.min(currentIndex, maxIndex)
 
   return (
     <section className="imgSection-wrapper">
@@ -116,20 +113,12 @@ export default function ImageSection({data}: ImageSectionProps) {
         </div>
 
         {/* Carousel */}
-        <div
-          className="imgCards-carousel"
-          onMouseEnter={() => {
-            setIsAutoPlaying(false)
-          }}
-          onMouseLeave={() => {
-            setIsAutoPlaying(true)
-          }}
-        >
+        <div className="imgCards-carousel">
           <div className="imgCards-viewport">
             <div
               className="imgCards-container"
               style={{
-                transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`,
+                transform: `translateX(-${safeIndex * (100 / cardsPerView)}%)`,
                 width: `${(totalImages / cardsPerView) * 100}%`,
               }}
             >
