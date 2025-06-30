@@ -237,7 +237,7 @@
 /* Desktop: 1020px+ (3 cards) */
 @media (min-width: 1020px) {
   .imgSection-wrapper {
-    padding: 5rem 0;
+    padding: 0rem 0;
   }
 
   .imgSection-header {

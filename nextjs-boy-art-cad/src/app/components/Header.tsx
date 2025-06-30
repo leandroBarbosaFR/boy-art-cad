@@ -101,8 +101,8 @@ export default function Header() {
       ? '8px 10px'
       : '10px 10px'
     : scrolled
-    ? '10px 20px'
-    : '30px 20px'
+    ? '8px 10px'
+    : '10px 10px'
 
   return (
     <header
