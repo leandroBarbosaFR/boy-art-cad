@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.boyartcad.fr/</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+ <url>
+    <loc>https://www.boyartcad.fr/contact</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Add other pages manually below -->
+  <url>
+    <loc>https://www.boyartcad.fr/about</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.boyartcad.fr/collection</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+    <url>
+    <loc>https://www.boyartcad.fr/collection?category=borne-arcade</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+    <url>
+    <loc>https://www.boyartcad.fr/collection?category=cassette</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+    <url>
+    <loc>https://www.boyartcad.fr/collection?category=tableau</loc>
+    <lastmod>2025-07-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
