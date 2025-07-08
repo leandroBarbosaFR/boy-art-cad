@@ -51,7 +51,7 @@ export default function EmbedSection({data}: EmbedSectionProps) {
   }
 
   return (
-    <section className="embed-section">
+    <section className="embed-section bg-[light-grey]">
       <div className="embed-container">
         {title && (
           <div className="embed-header">

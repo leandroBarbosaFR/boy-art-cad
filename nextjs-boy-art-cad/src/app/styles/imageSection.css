@@ -94,7 +94,7 @@
 
 .imgCards-container {
   display: flex;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   gap: 0;
 }
 
@@ -265,7 +265,7 @@
 /* Widescreen: 1460px+ (4 cards) */
 @media (min-width: 1460px) {
   .imgSection-wrapper {
-    padding: 6rem 0;
+    padding: 0rem 0;
   }
 
   .imgSection-container {

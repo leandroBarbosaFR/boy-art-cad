@@ -118,8 +118,9 @@ export default function ImageSection({data}: ImageSectionProps) {
             <div
               className="imgCards-container"
               style={{
-                transform: `translateX(-${safeIndex * (100 / cardsPerView)}%)`,
-                width: `${(totalImages / cardsPerView) * 100}%`,
+                transform: `translateX(-${safeIndex * (100 / totalImages)}%)`,
+                width: `${(totalImages * 100) / cardsPerView}%`,
+                transition: `transform ${cardsPerView === 1 ? '0.8s' : '0.4s'} ease-in-out`,
               }}
             >
               {validImages.map((img, index) => (
