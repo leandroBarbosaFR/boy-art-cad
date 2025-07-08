@@ -31,7 +31,7 @@ export default function EmbedSection({data}: EmbedSectionProps) {
     // Vimeo URLs
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1]?.split('?')[0]
-      return `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`
+      return `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1&background=1&title=0&byline=0&portrait=0`
     }
 
     // Direct video files (mp4, webm, etc.)
