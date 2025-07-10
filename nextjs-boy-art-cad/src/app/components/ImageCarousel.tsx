@@ -62,14 +62,14 @@ export default function ImageCarousel({images}: Props) {
         <>
           <button
             onClick={() => instanceRef.current?.prev()}
-            className="hidden md:block absolute left-0 top-1/2 z-10 -translate-y-1/2 dark:bg-black/50 hover:bg-black/70 p-2 cursor-pointer rounded-full shadow"
+            className=" absolute left-0 top-1/2 z-10 -translate-y-1/2 dark:bg-black/50 hover:bg-black/70 p-2 cursor-pointer rounded-full shadow"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5 text-black dark:text-white" />
           </button>
           <button
             onClick={() => instanceRef.current?.next()}
-            className="hidden md:block absolute right-0 top-1/2 z-10 -translate-y-1/2 dark:bg-black/50 hover:bg-black/70 p-2 rounded-full shadow"
+            className=" absolute right-0 top-1/2 z-10 -translate-y-1/2 dark:bg-black/50 hover:bg-black/70 p-2 rounded-full shadow"
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5 text-black dark:text-white" />
