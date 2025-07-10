@@ -101,7 +101,7 @@ export default function TextImageSection({data}: TextImageSectionProps) {
 
   return (
     <section ref={sectionRef} className="textImg-section">
-      <div className="textImg-background"></div>
+      {/* <div className="textImg-background"></div> */}
 
       <div className="textImg-container">
         <div className="textImg-grid">

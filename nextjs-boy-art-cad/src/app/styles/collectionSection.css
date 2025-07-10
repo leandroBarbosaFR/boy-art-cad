@@ -8,7 +8,7 @@
 
 .collectionSection-wrapper {
   position: relative;
-  background-color: #1a1a1a;
+  background-color: #dededc;
   margin: 0 25px;
   overflow: hidden;
   border-radius: 10px;
@@ -30,14 +30,14 @@
   grid-row: 1;
   grid-column: 1/13;
   justify-self: center;
-  color: #f1f0e7;
+  color: #1a1a1a;
 }
 
 .collection-main-title {
   font-size: clamp(1.75rem, 5vw, 2.25rem);
   font-weight: 700;
   line-height: 1.2;
-  color: #f1f0e7;
+  color: #1a1a1a;
   margin: 0;
   text-align: center;
 }
@@ -45,7 +45,7 @@
 .hero-body-collection {
   grid-column: 1/13;
   grid-row: 2;
-  color: #f1f0e7;
+  color: #1a1a1a;
   justify-self: center;
   text-align: center;
   font-size: clamp(1rem, 2.5vw, 1.125rem);
@@ -64,14 +64,14 @@
   grid-row: 3;
   column-gap: 25px;
   row-gap: 25px;
-  color: #f1f0e7;
+  color: #1a1a1a;
 }
 
 .grid-item {
   grid-column: span 4;
   display: block;
   text-decoration: none;
-  color: #f1f0e7;
+  color: #1a1a1a;
 }
 
 .image-collection-container {
@@ -81,18 +81,19 @@
   transition: border-color 0.3s ease;
   aspect-ratio: 4 / 3;
   position: relative;
-  background: #2a2a2a;
+  background: transparent;
+  /* height: 400px; */
 }
 
 .grid-item:hover .image-collection-container {
-  border-color: #f1f0e7;
+  border-color: transparent;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .image-collection {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   transition: transform 0.3s ease;
   transform-origin: center center;
 }
@@ -105,12 +106,12 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin: 1rem 0 0.5rem 0;
-  color: #f1f0e7;
+  color: #1a1a1a;
 }
 
 .collection-dimensions {
   font-size: 0.9rem;
-  color: #ccc;
+  color: #1a1a1a;
   margin: 0 0 0.25rem 0;
   font-weight: 600;
 }
@@ -118,7 +119,7 @@
 .collection-price {
   font-size: 1rem;
   font-weight: 600;
-  color: #ccc;
+  color: #1a1a1a;
   margin: 0;
 }
 
@@ -133,7 +134,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #f1f0e7;
+  background: transparent;
   color: #1a1a1a;
   padding: 8px 16px;
   font-size: 16px;
@@ -146,7 +147,7 @@
 }
 
 .btn-wrapper-collection:hover {
-  background: #e5e4dd;
+  background: transparent;
   box-shadow: 0 4px 12px rgba(241, 240, 231, 0.3);
 }
 
@@ -293,7 +294,7 @@
 
   .btn-wrapper-collection:active {
     transform: translateY(0);
-    background: #d5d4cd;
+    background: transparent;
   }
 }
 
@@ -308,11 +309,11 @@
 
 /* Focus styles */
 .grid-item:focus-visible {
-  outline: 2px solid #f1f0e7;
+  outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
 .btn-wrapper-collection:focus-visible {
-  outline: 2px solid #f1f0e7;
+  outline: 2px solid transparent;
   outline-offset: 2px;
 }
