@@ -69,6 +69,11 @@ export const collection = defineType({
       title: 'Images de la collection',
       of: [{type: 'collectionImage'}],
     }),
+    defineField({
+      name: 'imagesTitreSection',
+      type: 'string',
+      title: 'La collection titre',
+    }),
   ],
   preview: {
     select: {

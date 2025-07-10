@@ -14,6 +14,7 @@ const query = groq`
     title,
     subtitle,
     description,
+    imagesTitreSection,
     "mainImageUrl": mainImage.asset->url,
     mainImage {
       alt
@@ -47,6 +48,7 @@ type Props = {
 export default async function CollectionShowPage({params}: Props) {
   const resolvedParams = await params
   const data = await client.fetch(query, {slug: resolvedParams.slug})
+  console.log(JSON.stringify(data, null, 2))
 
   if (!data) {
     return <div>Collection non trouvée.</div>
@@ -73,32 +75,39 @@ export default async function CollectionShowPage({params}: Props) {
                 alt={data.mainImage?.alt || 'Image principale de la collection'}
                 width={800}
                 height={500}
-                className="rounded mb-6"
+                className="rounded"
               />
             </div>
           )}
 
-          <div className="prose max-w-none mb-8 show-description">
+          <div className="prose max-w-none show-description">
             <PortableText value={data.description} />
           </div>
 
           {data.images?.length > 0 && (
             <>
               <h2 className="text-2xl font-semibold mb-4 title-images-bottom">
-                Images de la collection
+                {data.imagesTitreSection}
               </h2>
 
               <div className="image-bottom-wrapper">
                 {data.images.map((img: CollectionImage) =>
                   img.image?.url ? (
-                    <Image
-                      key={img._key}
-                      src={img.image.url}
-                      alt={img.image.alt || img.alt || 'Image de la collection'}
-                      width={500}
-                      height={400}
-                      className="object-cover rounded images-bottom-item"
-                    />
+                    <div key={img._key} className="images-bottom-item">
+                      <Image
+                        src={img.image.url}
+                        alt={img.image.alt || img.alt || 'Image de la collection'}
+                        width={500}
+                        height={400}
+                        className="object-cover rounded"
+                      />
+
+                      {img.image.title && (
+                        <p className="text-center mt-2 text-sm text-gray-700 italic">
+                          {img.image.title}
+                        </p>
+                      )}
+                    </div>
                   ) : null,
                 )}
               </div>
