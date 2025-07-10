@@ -89,7 +89,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
+      setIsMobile(window.innerWidth <= 1020)
     }
     handleResize()
     window.addEventListener('resize', handleResize)
@@ -119,7 +119,7 @@ export default function Header() {
           </div>
 
           {/* Desktop */}
-          <div className="hidden md:flex gap-6 items-center">
+          <div className="hidden lg:flex gap-6 items-center">
             {links.map((link) => {
               const href = resolveLinkHref(link)
               const isActive = isLinkActive(link, pathname, searchParams)
@@ -148,7 +148,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-[#1a1a1a]"
+            className="lg:hidden text-[#1a1a1a]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -160,7 +160,7 @@ export default function Header() {
       {/* Mobile Drawer */}
       {isOpen && (
         <div
-          className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40"
+          className="nav-draw-wrapper lg:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-lg text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40"
           style={{height: '100vh'}}
         >
           <div className="flex flex-col space-y-4">

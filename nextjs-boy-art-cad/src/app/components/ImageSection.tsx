@@ -4,6 +4,7 @@ import Image from 'next/image'
 import {urlFor} from '../../lib/sanityImage'
 import '../styles/imageSection.css'
 import CrabSvg from '../components/CrabSvg'
+import {useSwipeable} from 'react-swipeable'
 // import Link from 'next/link'
 
 function useHasMounted() {
@@ -35,6 +36,12 @@ export default function ImageSection({data}: ImageSectionProps) {
   const totalImages = validImages.length
 
   const [cardsPerView, setCardsPerView] = useState(1)
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => goToNext(),
+    onSwipedRight: () => goToPrevious(),
+    trackMouse: true,
+  })
 
   useEffect(() => {
     const getCardsPerView = () => {
@@ -78,6 +85,7 @@ export default function ImageSection({data}: ImageSectionProps) {
         <div className="imgCards-carousel">
           <div className="imgCards-viewport">
             <div
+              {...handlers}
               className="imgCards-container"
               style={{
                 transform: `translateX(-${safeIndex * (100 / totalImages)}%)`,

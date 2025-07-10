@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 // import {PortableText} from '@portabletext/react'
-import { client } from '../../sanity/client'
-import { urlFor } from '../../lib/sanityImage'
+import {client} from '../../sanity/client'
+import {urlFor} from '../../lib/sanityImage'
 import Link from 'next/link'
 import '../styles/aboutPage.css'
 import PortableTextRenderer from '../components/PortableTextRenderer'
@@ -59,19 +59,18 @@ export default async function AboutPage() {
         <CrabSvg />
       </div>
       <div className="about-page-grid">
-        <div className='image-wrapper'>
+        <div className="image-wrapper">
           {data.image?.asset && (
-              <Image
-                src={urlFor(data.image.asset).width(7172).url()}
-                alt={data.title}
-                // fill
-                quality={100}
-                priority
-                width={800}
-                height={400}
-                style={{ objectFit: 'cover' }}
-               
-              />
+            <Image
+              src={urlFor(data.image.asset).width(7172).url()}
+              alt={data.title}
+              // fill
+              quality={100}
+              priority
+              width={800}
+              height={400}
+              style={{objectFit: 'cover'}}
+            />
           )}
         </div>
         <div className="title-about">
@@ -90,7 +89,7 @@ export default async function AboutPage() {
                 {data.cta.link?.internal?.slug?.current ? (
                   <Link
                     href={`/${data.cta.link.internal.slug.current}`}
-                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#1a1a1a] rounded cursor-pointer cta-about"
+                    className="inline-block px-4 py-2 bg-[#1a1a1a] hover:bg-[#30302e]/90 text-[#f1f0e7] rounded cursor-pointer cta-about"
                   >
                     {data.cta.link.internal.title || 'Contactez-nous'}
                   </Link>
@@ -99,7 +98,7 @@ export default async function AboutPage() {
                     href={data.cta.link.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-[#f1f0e7] hover:bg-[#f1f0e7]/90 text-[#1a1a1a] rounded cta-about cursor-pointer"
+                    className="inline-block px-4 py-2 bg-[#1a1a1a] hover:bg-[#30302e]/90 text-[#f1f0e7] rounded cta-about cursor-pointer"
                   >
                     {data.cta.link.title || 'Contactez-nous'}
                   </a>

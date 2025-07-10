@@ -9,10 +9,10 @@
 
 .cta-section {
   grid-column: 1/13;
-  background: #1a1a1a;
+  background: #d9d8d0;
   overflow: hidden;
   border-radius: 10px;
-  color: #f1f0e7;
+  color: #1a1a1a;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   padding: 100px 50px;
@@ -49,7 +49,6 @@
   grid-row: 2;
 }
 
-
 /* responsive */
 @media (max-width: 768px) {
   .title-about {
@@ -63,7 +62,7 @@
     overflow: hidden;
     border-radius: 10px;
     height: fit-content;
-}
+  }
 
   .about-page-grid {
     display: grid;
@@ -82,10 +81,8 @@
   .cta-section {
     grid-column: 1/13;
     grid-row: 4;
-    background: #1a1a1a;
     overflow: hidden;
     border-radius: 10px;
-    color: #f1f0e7;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     padding: 100px 10px;
@@ -103,7 +100,6 @@
     grid-column: 1/13;
     margin: 0 auto;
   }
-
 }
 
 .aboutSection-bg-section {

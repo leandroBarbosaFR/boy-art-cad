@@ -50,8 +50,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo / Brand */}
           <div className="flex items-center text-xl font-medium">
-            <Joystick size={20} className="mr-2" />
-            Boy<b>Art</b>Cad
+            <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
+              <Joystick size={20} className="mr-2" />
+              Boy<b>Art</b>Cad
+            </Link>
           </div>
 
           {/* Navigation Links - Responsive Layout */}
@@ -70,7 +72,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 text-center text-xs text-gray-500">
+        <div className="mt-8 text-center text-xs text-[#1a1a1a]-500">
           &copy; {new Date().getFullYear()} BoyArtCad. Tous droits réservés
         </div>
       </div>
