@@ -11,7 +11,7 @@
 .hero-section {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   padding: 6rem 1rem;
