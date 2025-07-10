@@ -83,7 +83,7 @@ export default function CollectionSection({data}: CollectionSectionProps) {
           <div className="cta-button-wrapper">
             <Link href="/collection" className="btn-wrapper-collection">
               Voir toutes les collections
-              <ArrowRight color="#1a1a1a" size={20} />
+              <ArrowRight color="#f1f0e7" size={20} />
             </Link>
           </div>
         </div>
