@@ -1,11 +1,11 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
-import { Joystick, Menu, X } from 'lucide-react'
-import { client } from '../../sanity/client'
+import {Joystick, Menu, X} from 'lucide-react'
+import {client} from '../../sanity/client'
 import useScrollPosition from '../../hooks/useScrollPosition'
-import { usePathname, useSearchParams } from 'next/navigation'
+import {usePathname, useSearchParams} from 'next/navigation'
 import '../styles/header.css'
 
 const HEADER_QUERY = `*[_type == "header"][0]{
@@ -54,19 +54,19 @@ function resolveLinkHref(link: HeaderLink): string {
 
 function isLinkActive(link: HeaderLink, pathname: string, searchParams: URLSearchParams): boolean {
   const href = resolveLinkHref(link)
-  
+
   // Handle category links specially
   if (link.internal?._type === 'category') {
     const currentCategory = searchParams.get('category')
     return pathname === '/collection' && currentCategory === link.internal.slug?.current
   }
-  
+
   // Handle collection page without category (general collection link)
   if (href === '/collection') {
     const currentCategory = searchParams.get('category')
     return pathname === '/collection' && !currentCategory
   }
-  
+
   // Handle other links
   return pathname === href
 }
@@ -81,7 +81,7 @@ export default function Header() {
 
   useEffect(() => {
     const fetchHeader = async () => {
-      const data = await client.fetch<{ links: HeaderLink[] }>(HEADER_QUERY)
+      const data = await client.fetch<{links: HeaderLink[]}>(HEADER_QUERY)
       setLinks(data?.links || [])
     }
     fetchHeader()
@@ -101,13 +101,13 @@ export default function Header() {
       ? '8px 10px'
       : '10px 10px'
     : scrolled
-    ? '8px 10px'
-    : '10px 10px'
+      ? '8px 10px'
+      : '10px 10px'
 
   return (
     <header
       className="fixed top-0 w-full z-50 bg-[#f1f0e7] header-transition"
-      style={{ padding: paddingStyle }}
+      style={{padding: paddingStyle}}
     >
       <div className="px-4 flex justify-between sm:px-6 lg:px-8">
         <nav className="flex justify-between w-full items-center h-16">
@@ -159,7 +159,10 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40" style={{ height: '100vh' }}>
+        <div
+          className="nav-draw-wrapper md:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-md text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40"
+          style={{height: '100vh'}}
+        >
           <div className="flex flex-col space-y-4">
             {links.map((link) => {
               const href = resolveLinkHref(link)

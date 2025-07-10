@@ -47,16 +47,16 @@
   font-weight: 700;
   line-height: 1.2;
   color: #1a1a1a;
-  margin: 0;
+  margin: 0 auto;
 }
 
 /* Navigation Buttons */
-.imgCarousel-nav-buttons {
+/* .imgCarousel-nav-buttons {
   display: flex;
   gap: 0.5rem;
-}
+} */
 
-.imgCarousel-nav-btn {
+/* .imgCarousel-nav-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +79,7 @@
   background: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
   transform: none;
-}
+} */
 
 /* Cards Carousel */
 .imgCards-carousel {
@@ -154,10 +154,8 @@
 
 .imgCarousel-info {
   color: #dfd9d9;
-  font-size: 0.9rem;
   font-weight: 500;
   background: rgba(0, 0, 0, 1);
-  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
@@ -252,11 +250,6 @@
     margin-top: 3rem;
   }
 
-  .imgCarousel-info {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-  }
-
   .imgCarousel-progress-track {
     height: 5px;
   }
@@ -313,9 +306,9 @@
     gap: 1.5rem;
   }
 
-  .imgCarousel-nav-buttons {
+  /* .imgCarousel-nav-buttons {
     align-self: flex-end;
-  }
+  } */
 
   .imgCarousel-bottom {
     justify-content: center;
@@ -385,4 +378,44 @@
 .imgCarousel-nav-btn:focus-visible {
   outline: 2px solid #1a1a1a;
   outline-offset: 2px;
+}
+
+/* Side Arrows - Fullscreen Positioning */
+.imgCarousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgCarousel-arrow svg {
+  stroke: white;
+}
+
+.imgCarousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.imgCarousel-arrow.left {
+  left: -20px; /* Ajustable selon ton layout */
+}
+
+.imgCarousel-arrow.right {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  .imgCarousel-arrow {
+    display: none;
+  }
 }

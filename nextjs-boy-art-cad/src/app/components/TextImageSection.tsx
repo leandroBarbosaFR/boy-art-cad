@@ -128,7 +128,9 @@ export default function TextImageSection({data}: TextImageSectionProps) {
             {cta?.label && (
               <div className="textImg-cta text-content-item">
                 <a href={cta.url} target="_blank" rel="noopener noreferrer">
-                  <button className="textImg-cta-button">{cta.label}</button>
+                  <button className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition">
+                    {cta.label}
+                  </button>
                 </a>
               </div>
             )}
@@ -139,10 +141,10 @@ export default function TextImageSection({data}: TextImageSectionProps) {
             <div className="textImg-image-wrapper" ref={imageRef}>
               <div className="textImg-image-container">
                 <Image
-                  src={urlFor(data.image).width(800).url()}
+                  src={urlFor(data.image).width(640).url()}
                   alt={data.image?.alt || 'Section image'}
-                  width={800}
-                  height={600}
+                  width={640}
+                  height={427}
                   quality={90}
                   priority
                   className="textImg-image"

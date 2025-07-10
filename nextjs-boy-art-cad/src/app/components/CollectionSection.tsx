@@ -69,8 +69,10 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                     </div>
 
                     <h2 className="collection-item-title">{collection.title}</h2>
-                    <p className="collection-dimensions">{collection.dimensions}</p>
-                    {collection.price && <p className="collection-price">{collection.price} €</p>}
+                    <p className="collection-dimensions">Dimensions: {collection.dimensions}</p>
+                    {collection.price && (
+                      <p className="collection-price">Prix: {collection.price} €</p>
+                    )}
                   </Link>
                 )
               })}

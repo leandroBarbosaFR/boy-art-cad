@@ -44,14 +44,14 @@
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  background: #f8f9fa;
+  background: transparent;
 }
 
 .embed-content {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: #000;
+  background: transparent;
   border-radius: 1rem;
   overflow: hidden;
 }
@@ -70,7 +70,7 @@
   height: 100%;
   border: none;
   border-radius: 1rem;
-  background: #000;
+  background: transparent;
 }
 
 /* Video Styling */
@@ -78,12 +78,11 @@
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-  background: #000;
+  background: transparent;
   outline: none;
 }
 
 .embed-video:focus {
-  outline: 2px solid #1a1a1a;
   outline-offset: 2px;
 }
 
@@ -171,19 +170,19 @@
   }
 
   .embed-wrapper {
-    border-radius: 1.25rem;
+    border-radius: 1rem;
   }
 
   .embed-content {
-    border-radius: 1.25rem;
+    border-radius: 1rem;
   }
 
   .embed-iframe {
-    border-radius: 1.25rem;
+    border-radius: 1rem;
   }
 
   .embed-video {
-    border-radius: 1.25rem;
+    border-radius: 1rem;
   }
 }
 
@@ -235,19 +234,19 @@
 
   .embed-wrapper {
     max-width: 1200px;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
 
   .embed-content {
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
 
   .embed-iframe {
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
 
   .embed-video {
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
 
   .embed-spinner {
@@ -282,10 +281,6 @@
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .embed-wrapper {
-    border: 2px solid #1a1a1a;
-  }
-
   .embed-title {
     text-shadow: none;
   }
@@ -293,6 +288,5 @@
 
 /* Focus styles for accessibility */
 .embed-iframe:focus-visible {
-  outline: 3px solid #1a1a1a;
   outline-offset: 2px;
 }

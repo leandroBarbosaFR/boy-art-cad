@@ -72,44 +72,6 @@ export default function ImageSection({data}: ImageSectionProps) {
         {/* Header */}
         <div className="imgSection-header">
           <h1 className="imgSection-title">{heading}</h1>
-          {totalImages > cardsPerView && (
-            <div className="imgCarousel-nav-buttons">
-              <button
-                onClick={goToPrevious}
-                disabled={currentIndex <= 0}
-                className="imgCarousel-nav-btn"
-                aria-label="Images précédentes"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <polyline points="15,18 9,12 15,6"></polyline>
-                </svg>
-              </button>
-              <button
-                onClick={goToNext}
-                disabled={currentIndex >= maxIndex}
-                className="imgCarousel-nav-btn"
-                aria-label="Images suivantes"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <polyline points="9,18 15,12 9,6"></polyline>
-                </svg>
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Carousel */}
@@ -130,14 +92,12 @@ export default function ImageSection({data}: ImageSectionProps) {
                   style={{width: `${100 / totalImages}%`, flexShrink: 0}}
                 >
                   <div className="imgCard-inner">
-                    {/* Blurred background layer */}
                     <div
                       className="imgCard-blur-bg"
                       style={{
                         backgroundImage: `url(${urlFor(img).width(400).height(300).url()})`,
                       }}
                     />
-                    {/* Foreground image */}
                     <Image
                       width={400}
                       height={300}
@@ -152,13 +112,56 @@ export default function ImageSection({data}: ImageSectionProps) {
               ))}
             </div>
           </div>
+
+          {/* Arrows on sides */}
+          {totalImages > cardsPerView && (
+            <>
+              <button
+                onClick={goToPrevious}
+                disabled={currentIndex <= 0}
+                className="imgCarousel-arrow left"
+                aria-label="Précédent"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="15,18 9,12 15,6" />
+                </svg>
+              </button>
+              <button
+                onClick={goToNext}
+                disabled={currentIndex >= maxIndex}
+                className="imgCarousel-arrow right"
+                aria-label="Suivant"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="9,18 15,12 9,6" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
 
-        {/* Bottom navigation */}
+        {/* Bottom nav */}
         <div className="imgCarousel-bottom">
           <div className="imgCarousel-info">
-            <Link href="/collection">
-              <span>Notre collection</span>
+            <Link
+              href="/collection"
+              className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
+            >
+              Notre collection
             </Link>
           </div>
         </div>
