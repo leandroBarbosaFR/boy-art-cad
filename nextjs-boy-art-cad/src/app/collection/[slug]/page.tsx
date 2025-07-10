@@ -6,6 +6,7 @@ import {PortableText} from '@portabletext/react'
 import '../../styles/collectionsShow.css'
 import Link from 'next/link'
 import {ArrowLeft} from 'lucide-react'
+import ImageCarousel from '@/app/components/ImageCarousel'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,6 +15,11 @@ const query = groq`
     title,
     subtitle,
     description,
+    category-> {
+      _id,
+      title,
+      slug
+    },
     imagesTitreSection,
     "mainImageUrl": mainImage.asset->url,
     mainImage {
@@ -25,21 +31,12 @@ const query = groq`
       image {
         alt,
         title,
+        body,
         "url": asset->url
       }
     }
   }
 `
-
-interface CollectionImage {
-  _key: string
-  alt?: string
-  image: {
-    url: string | null
-    alt?: string | null
-    title?: string | null
-  }
-}
 
 type Props = {
   params: Promise<{slug: string}>
@@ -48,7 +45,7 @@ type Props = {
 export default async function CollectionShowPage({params}: Props) {
   const resolvedParams = await params
   const data = await client.fetch(query, {slug: resolvedParams.slug})
-  console.log(JSON.stringify(data, null, 2))
+  console.log(data)
 
   if (!data) {
     return <div>Collection non trouvée.</div>
@@ -59,13 +56,15 @@ export default async function CollectionShowPage({params}: Props) {
       <div className="collections-show-container">
         <div className="collections-show-grid">
           <Link href="/collection">
-            <div className="backBtn-wrapper bg-[#1a1a1a] p-2 rounded text-[#f1f0e7] flex gap-2 cursor-pointer">
-              <ArrowLeft color="#f1f0e7" size={24} />
-              Retour
+            <div className="whitespace-nowrap backBtn-wrapper bg-[transparent] text-[#212121] font-bold hover:text-[rgba(0,0,0, 0.8)] flex gap-2 cursor-pointer">
+              <ArrowLeft color="#1a1a1a" size={24} />
+              Retour aux collections
             </div>
           </Link>
 
-          <p className="text-lg text-gray-600 show-subtitle">{data.subtitle}</p>
+          {/* <p className="text-lg p-2 bg-[#1a1a1a] rounded text-[#f1f0e7] show-subtitle">
+            {data.category?.title}
+          </p> */}
           <h1 className="text-3xl font-bold show-title">{data.title}</h1>
 
           {data.mainImageUrl && (
@@ -91,24 +90,10 @@ export default async function CollectionShowPage({params}: Props) {
               </h2>
 
               <div className="image-bottom-wrapper">
-                {data.images.map((img: CollectionImage) =>
-                  img.image?.url ? (
-                    <div key={img._key} className="images-bottom-item">
-                      <Image
-                        src={img.image.url}
-                        alt={img.image.alt || img.alt || 'Image de la collection'}
-                        width={500}
-                        height={400}
-                        className="object-cover rounded"
-                      />
-
-                      {img.image.title && (
-                        <p className="text-center mt-2 text-sm text-gray-700 italic">
-                          {img.image.title}
-                        </p>
-                      )}
-                    </div>
-                  ) : null,
+                {data.images?.length > 0 && (
+                  <>
+                    <ImageCarousel images={data.images} />
+                  </>
                 )}
               </div>
             </>

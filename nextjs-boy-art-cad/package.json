@@ -16,6 +16,7 @@
     "@sanity/preview-kit": "^6.1.1",
     "@sanity/vision": "^3.90.0",
     "gsap": "^3.13.0",
+    "keen-slider": "^6.8.6",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
     "next-sanity": "^9.11.1",

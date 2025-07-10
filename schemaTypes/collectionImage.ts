@@ -18,13 +18,20 @@ export const collectionImage = defineType({
           type: 'string',
           title: 'Texte alternatif',
         }),
+        defineField({
+          name: 'title',
+          type: 'string',
+          title: "Titre de l'image",
+        }),
+        defineField({
+          name: 'body',
+          type: 'array',
+          title: 'Description',
+          of: [{type: 'block'}],
+        }),
       ],
     }),
-    defineField({
-      name: 'title',
-      type: 'string',
-      title: "Titre de l'image",
-    }),
+
     defineField({
       name: 'collection',
       title: 'Collection parente',
