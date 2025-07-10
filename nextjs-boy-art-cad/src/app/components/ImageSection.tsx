@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {urlFor} from '../../lib/sanityImage'
 import '../styles/imageSection.css'
 import CrabSvg from '../components/CrabSvg'
-import Link from 'next/link'
+// import Link from 'next/link'
 
 function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false)
@@ -155,7 +155,7 @@ export default function ImageSection({data}: ImageSectionProps) {
         </div>
 
         {/* Bottom nav */}
-        <div className="imgCarousel-bottom">
+        {/* <div className="imgCarousel-bottom">
           <div className="imgCarousel-info">
             <Link
               href="/collection"
@@ -164,7 +164,7 @@ export default function ImageSection({data}: ImageSectionProps) {
               Notre collection
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

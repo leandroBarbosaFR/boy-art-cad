@@ -262,6 +262,7 @@
 @media (min-width: 1020px) {
   .hero-section {
     padding: 10rem 2rem;
+    height: 90vh;
   }
 
   .hero-grid {
