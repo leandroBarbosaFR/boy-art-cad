@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   padding: 100px 50px;
+  margin: 100px 0 0 0;
   row-gap: 25px;
 }
 
@@ -47,6 +48,10 @@
 .body-about {
   grid-column: 1/7;
   grid-row: 2;
+}
+
+.about-page {
+  padding: 50px 0;
 }
 
 /* responsive */

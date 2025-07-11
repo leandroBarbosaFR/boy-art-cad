@@ -5,7 +5,7 @@ import {ThemeProvider} from 'next-themes'
 import Header from '../app/components/Header'
 import Footer from '../app/components/Footer'
 import CookieModal from '../app/components/CookieModal'
-import { Suspense } from 'react'
+import {Suspense} from 'react'
 
 const geistSans = Poppins({
   variable: '--font-geist-sans',
