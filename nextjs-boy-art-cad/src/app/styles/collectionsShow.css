@@ -175,12 +175,12 @@ a {
   }
 
   .image-show-collections-wrapper {
-    grid-column: span 12;
+    grid-column: 1/6;
     grid-row: 4;
   }
 
   .show-description {
-    grid-column: 6/12;
+    grid-column: 7/12;
     grid-row: 4;
     margin: auto 0;
   }
@@ -194,7 +194,7 @@ a {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column: span 12;
-    grid-row: 5;
+    grid-row: 6;
     column-gap: 25px;
     row-gap: 25px;
   }
@@ -238,7 +238,7 @@ a {
   }
 
   .image-show-collections-wrapper {
-    grid-column: span 12;
+    grid-column: 1/6;
     grid-row: 4;
   }
 
@@ -257,7 +257,7 @@ a {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-column: span 12;
-    grid-row: 5;
+    grid-row: 6;
     column-gap: 25px;
     row-gap: 25px;
   }
