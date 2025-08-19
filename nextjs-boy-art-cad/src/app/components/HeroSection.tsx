@@ -147,7 +147,6 @@ export default function HeroSection({data}: HeroSectionProps) {
           <div
             className="hero-subtitle"
             style={{
-              background: 'rgba(0, 0, 0, 0.1)',
               padding: '0.5rem 1rem',
               width: 'fit-content',
               borderRadius: '1.5rem',

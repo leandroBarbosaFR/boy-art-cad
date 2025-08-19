@@ -27,7 +27,6 @@ const query = groq`
     },
     images[] {
       _key,
-      alt,
       image {
         alt,
         title,
@@ -45,7 +44,6 @@ type Props = {
 export default async function CollectionShowPage({params}: Props) {
   const resolvedParams = await params
   const data = await client.fetch(query, {slug: resolvedParams.slug})
-  console.log(data)
 
   if (!data) {
     return <div>Collection non trouvée.</div>
