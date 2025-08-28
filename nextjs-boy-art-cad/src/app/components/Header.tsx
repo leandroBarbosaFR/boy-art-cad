@@ -24,6 +24,8 @@ const HEADER_QUERY = `*[_type == "header"][0]{
   }
 }`
 
+const navCta = ['Bornes','Cassette','Tableaux']
+
 interface HeaderLink {
   _key: string
   _type: string
@@ -127,17 +129,29 @@ export default function Header() {
                 <Link
                   key={link._key}
                   href={href}
-                  className={`px-4 py-2 rounded-lg transition ${
-                    isActive
+                  className={`px-4 py-2 rounded-lg transition ${isActive
                       ? 'bg-[#1a1a1a] text-[#f1f0e7]'
-                      : 'text-[#1a1a1a] hover:text-[#f1f0e7] hover:bg-[#1a1a1a]/90'
-                  }`}
+                      : 'text-[#1a1a1a] hover:text-[#f1f0e7] hover:bg-[#1a1a1a]/90'}`}
                   target={link.openInNewTab ? '_blank' : '_self'}
                 >
                   {link.text}
                 </Link>
               )
             })}
+              {/* CTA Navigation Items */}
+            {navCta.map((item, index) => (
+              <Link
+                key={index}
+                href={`/${item.toLowerCase()}`}
+                className={`px-4 py-2 rounded-lg transition ${
+                  pathname === `/${item.toLowerCase()}`
+                    ? 'bg-[#1a1a1a] text-[#f1f0e7]'
+                    : 'text-[#1a1a1a] hover:text-[#f1f0e7] hover:bg-[#1a1a1a]/90'
+                }`}
+              >
+                {item}
+              </Link>
+            ))}
             <Link
               href="/contact"
               className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
