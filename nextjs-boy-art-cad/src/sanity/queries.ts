@@ -1,0 +1,24 @@
+export const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && productType == $productType][0]{
+  title,
+  subtitle,
+  description,
+  mainImage{
+    asset->{
+      _id,
+      url
+    },
+    alt
+  },
+  gallery[]{
+    title,
+    excerpt,
+    image{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
+  },
+  seo
+}`

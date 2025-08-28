@@ -14,8 +14,8 @@ import {link} from './link'
 import {cookiesType} from './cookiesType'
 import {collection} from './collection'
 import {siteSettings} from './siteSettings'
-import {collectionsIndex} from './collectionsIndex'
 import { category } from './category'
+import productPage from './productPage'
 
 export const schemaTypes = [
   siteSettings,
@@ -35,5 +35,5 @@ export const schemaTypes = [
   cookiesType,
   category,
   collection,
-  collectionsIndex,
+  productPage
 ]
