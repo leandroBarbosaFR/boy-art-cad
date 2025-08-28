@@ -54,7 +54,7 @@ export default function CollectionSection({data}: CollectionSectionProps) {
                 return (
                   <Link
                     key={collection._id}
-                    href={`/collection/${collection.slug.current}`}
+                    href={`/${collection.slug.current}`}
                     className="grid-item"
                   >
                     <div className="image-collection-container">
