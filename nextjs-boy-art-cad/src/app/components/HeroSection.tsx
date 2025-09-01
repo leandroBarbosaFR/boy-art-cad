@@ -162,7 +162,7 @@ export default function HeroSection({data}: HeroSectionProps) {
             <PortableText value={body} />
           </div>
 
-          <div className="hero-cta">
+          <div className="hero-cta hidden md:block">
             {cta?.label && (
               <a
                 href={finalUrl}
