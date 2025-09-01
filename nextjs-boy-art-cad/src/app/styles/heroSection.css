@@ -8,6 +8,7 @@
   --widescreen: 1460px;
 }
 
+/* ===== Section & Grid ===== */
 .hero-section {
   position: relative;
   width: 100%;
@@ -32,11 +33,25 @@
     'carousel';
 }
 
-/* Content Styling */
+/* Soft textured background for the whole hero (very subtle) */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://cdn.sanity.io/images/5vf6pjp6/production/e0f22e8190144fdd5e8593b95caa012ee9410a4f-1200x1600.jpg')
+    center/cover no-repeat;
+  opacity: 0.05;
+  filter: blur(20px);
+  z-index: 0;
+}
+
+/* ===== Content ===== */
 .hero-content {
   grid-area: content;
   display: grid;
   gap: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
@@ -82,37 +97,39 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* Carousel Styling */
+/* ===== Carousel ===== */
 .hero-carousel {
   grid-area: carousel;
   position: relative;
   width: 100%;
+  z-index: 1;
+}
+
+/* Make every carousel layer transparent (kills any white bg) */
+.hero-carousel,
+.carousel-container,
+.carousel-track,
+.carousel-slide,
+.carousel-image-wrapper,
+.carousel-image {
+  background: transparent !important;
 }
 
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 300px; /* overridden per breakpoint below */
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('https://cdn.sanity.io/images/5vf6pjp6/production/e0f22e8190144fdd5e8593b95caa012ee9410a4f-1200x1600.jpg')
-    center/cover no-repeat;
-  opacity: 0.05;
-  filter: blur(20px);
-  z-index: 0;
-}
 .carousel-track {
   display: flex;
   width: 100%;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .carousel-slide {
@@ -120,43 +137,47 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  height: auto; /* ✅ let the height be natural */
-}
-
-.carousel-image {
-  max-height: 500px;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  height: 100%; /* fill the container height */
+  padding: 0; /* remove gutters that caused white edges */
 }
 
 .carousel-image-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
+/* Blurred background behind the main image */
 .carousel-image-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
   filter: blur(20px);
-  transform: scale(1.1);
+  transform: scale(1.1); /* avoid blur edges */
+  opacity: 0.35;
   z-index: 1;
+  pointer-events: none;
 }
 
+/* Foreground image fills the wrapper; use 'fill' on the Next/Image component */
+.carousel-image {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; /* use 'cover' if you want edge-to-edge crop */
+  z-index: 2;
+  background: transparent !important;
+}
+
+/* Nav buttons (dark translucent to avoid white discs) */
 .carousel-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.45);
   border: none;
   width: 40px;
   height: 40px;
@@ -165,25 +186,25 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #1a1a1a;
+  color: #fff;
   transition: all 0.3s ease;
   z-index: 10;
   backdrop-filter: blur(10px);
 }
 
 .carousel-nav:hover {
-  background: rgba(255, 255, 255, 1);
+  background: rgba(0, 0, 0, 0.6);
   transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-prev {
   left: 1rem;
 }
-
 .carousel-next {
   right: 1rem;
 }
 
+/* Dots */
 .carousel-dots {
   display: flex;
   justify-content: center;
@@ -196,7 +217,7 @@
   height: 10px;
   border-radius: 50%;
   border: none;
-  background: rgba(26, 26, 26, 0.3);
+  background: rgba(26, 26, 26, 0.35);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -204,11 +225,12 @@
 .carousel-dot:hover {
   background: rgba(26, 26, 26, 0.6);
 }
-
 .carousel-dot.active {
   background: #1a1a1a;
   transform: scale(1.2);
 }
+
+/* ===== Responsive ===== */
 
 /* Mobile Large: 500px+ */
 @media (min-width: 500px) {
@@ -341,7 +363,6 @@
   .hero-content {
     text-align: center;
   }
-
   .hero-cta {
     display: flex;
     justify-content: center;
@@ -352,7 +373,6 @@
   .hero-content {
     text-align: left;
   }
-
   .hero-cta {
     display: flex;
     justify-content: flex-start;

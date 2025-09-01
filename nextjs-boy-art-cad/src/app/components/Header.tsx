@@ -176,10 +176,11 @@ export default function Header() {
       {/* Mobile Drawer */}
       {isOpen && (
         <div
-          className="nav-draw-wrapper lg:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] shadow-lg text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40"
+          className="nav-draw-wrapper lg:hidden fixed top-16 left-0 w-full backdrop-blur bg-[#f1f0e7] text-[#1a1a1a] px-6 py-4 shadow-lg transition-all z-40"
           style={{height: '100vh'}}
         >
           <div className="flex flex-col space-y-4">
+            {/* Dynamic links from Sanity */}
             {links.map((link) => {
               const href = resolveLinkHref(link)
               const isActive = isLinkActive(link, pathname, searchParams)
@@ -187,11 +188,11 @@ export default function Header() {
                 <Link
                   key={link._key}
                   href={href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setIsOpen(false)} // ✅ close drawer on click
                   className={`px-4 py-2 transition border-b border-[#1a1a1a]/30 ${
                     isActive
                       ? 'bg-[#1a1a1a] text-[#f1f0e7]'
-                      : 'text-[#1a1a1a] hover:bg-[#1a1a1a]/90'
+                      : 'text-[#1a1a1a] hover:bg-[#1a1a1a]/90 hover:text-[#f1f0e7]'
                   }`}
                   target={link.openInNewTab ? '_blank' : '_self'}
                 >
@@ -199,24 +200,28 @@ export default function Header() {
                 </Link>
               )
             })}
-            {/* CTA Navigation Items */}
+
+            {/* CTA Navigation Items with bottom border + close on click */}
             {navCta.map((item, index) => (
               <Link
                 key={index}
                 href={`/${item.toLowerCase()}`}
-                className={`px-4 py-2 rounded-lg transition ${
+                onClick={() => setIsOpen(false)} // ✅ close drawer on click
+                className={`px-4 py-2 transition border-b border-[#1a1a1a]/30 ${
                   pathname === `/${item.toLowerCase()}`
                     ? 'bg-[#1a1a1a] text-[#f1f0e7]'
-                    : 'text-[#1a1a1a] hover:text-[#f1f0e7] hover:bg-[#1a1a1a]/90'
+                    : 'text-[#1a1a1a] hover:bg-[#1a1a1a]/90 hover:text-[#f1f0e7]'
                 }`}
               >
                 {item}
               </Link>
             ))}
+
+            {/* Contact button: outlined by default, solid on hover */}
             <Link
               href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
+              onClick={() => setIsOpen(false)} // ✅ close drawer on click
+              className="px-4 py-2 rounded-lg border border-[#1a1a1a] text-[#1a1a1a] transition hover:bg-[#1a1a1a] hover:text-[#f1f0e7]"
             >
               Contact
             </Link>
