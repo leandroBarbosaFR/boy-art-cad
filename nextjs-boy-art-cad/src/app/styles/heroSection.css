@@ -358,6 +358,12 @@
   }
 }
 
+@media (max-width: 739px) {
+  .hero-cta--desktop-only {
+    display: none;
+  }
+}
+
 /* Responsive text alignment */
 @media (max-width: 739px) {
   .hero-content {

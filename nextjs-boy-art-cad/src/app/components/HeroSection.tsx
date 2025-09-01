@@ -162,13 +162,13 @@ export default function HeroSection({data}: HeroSectionProps) {
             <PortableText value={body} />
           </div>
 
-          <div className="hero-cta hidden md:block">
+          <div className="hero-cta hero-cta--desktop-only">
             {cta?.label && (
               <a
                 href={finalUrl}
                 target={data.cta?.urlType === 'external' ? '_blank' : '_self'}
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
+                className=" hero-cta--desktop-only px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
               >
                 {data.cta?.label}
               </a>
