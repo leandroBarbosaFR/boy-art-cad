@@ -24,7 +24,7 @@ const HEADER_QUERY = `*[_type == "header"][0]{
   }
 }`
 
-const navCta = ['Bornes', 'Cassette', 'Tableaux']
+const navCta = ['Bornes', 'Cassettes', 'Tableaux']
 
 interface HeaderLink {
   _key: string
