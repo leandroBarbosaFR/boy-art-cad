@@ -7,6 +7,7 @@ import {urlFor} from '../../lib/sanityImage'
 import '../styles/textImageSection.css'
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import Link from 'next/link'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -97,7 +98,6 @@ export default function TextImageSection({data}: TextImageSectionProps) {
   const subtitle = data.subtitle || ''
   const body = data.body || []
   const image = data.image?.asset?.url
-  const cta = data.cta
 
   return (
     <section ref={sectionRef} className="textImg-section">
@@ -125,15 +125,13 @@ export default function TextImageSection({data}: TextImageSectionProps) {
               </div>
             )}
 
-            {cta?.label && (
-              <div className="textImg-cta text-content-item">
-                <a href={cta.url} target="_blank" rel="noopener noreferrer">
-                  <button className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition cursor-pointer">
-                    {cta.label}
-                  </button>
-                </a>
-              </div>
-            )}
+            <div className="textImg-cta text-content-item">
+              <Link href="/contact">
+                <button className="px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition cursor-pointer">
+                  Prendre contact
+                </button>
+              </Link>
+            </div>
           </div>
 
           {/* Image Area */}

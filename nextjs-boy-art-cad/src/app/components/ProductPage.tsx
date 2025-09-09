@@ -177,7 +177,7 @@ function Carousel({images}: {images: GalleryItem[]}) {
                           href="/contact"
                           className="px-3 py-1.5 bg-white text-black text-xs font-medium rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap inline-flex items-center justify-center"
                         >
-                          PRENDRE CONTACT
+                          Prendre contact
                         </Link>
                       </div>
                     </div>
@@ -296,7 +296,7 @@ export default function ProductPage({data, productType}: ProductPageProps) {
               href="/contact"
               className="rounded-xl bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-900 transition-colors"
             >
-              Nous contacter
+              Prendre contact
             </Link>
           </div>
         </div>

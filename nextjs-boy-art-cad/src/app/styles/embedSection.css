@@ -11,7 +11,7 @@
 .embed-section {
   position: relative;
   width: 100%;
-  padding: 3rem 0;
+  padding: 100px 0;
 }
 
 .embed-container {
@@ -130,7 +130,7 @@
 /* Mobile Large: 500px+ */
 @media (min-width: 500px) {
   .embed-section {
-    padding: 4rem 0;
+    padding: 100px 0;
   }
 
   .embed-container {
@@ -154,7 +154,7 @@
 /* Tablet: 740px+ */
 @media (min-width: 740px) {
   .embed-section {
-    padding: 5rem 0;
+    padding: 100px 0;
   }
 
   .embed-container {
@@ -189,7 +189,7 @@
 /* Desktop: 1020px+ */
 @media (min-width: 1020px) {
   .embed-section {
-    padding: 6rem 0;
+    padding: 100px 0;
   }
 
   .embed-container {
@@ -216,7 +216,7 @@
 /* Widescreen: 1460px+ */
 @media (min-width: 1460px) {
   .embed-section {
-    padding: 8rem 0;
+    padding: 100px 0;
   }
 
   .embed-container {
