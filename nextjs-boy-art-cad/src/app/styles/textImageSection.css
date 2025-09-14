@@ -11,7 +11,7 @@
 .textImg-section {
   position: relative;
   width: 100%;
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: flex;
   align-items: center;
 }
@@ -139,7 +139,7 @@
 /* Mobile Large: 500px+ */
 @media (min-width: 500px) {
   .textImg-section {
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 
   .textImg-container {
@@ -162,7 +162,7 @@
 /* Tablet: 740px+ */
 @media (min-width: 740px) {
   .textImg-section {
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 
   .textImg-container {
