@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export const heroSection = defineType({
   name: 'heroSection',
@@ -46,7 +46,7 @@ export const heroSection = defineType({
           ],
         },
       ],
-      validation: (rule) => rule.min(1).max(5).error('Veuillez ajouter entre 1 et 5 images'),
+      validation: (rule) => rule.min(1).max(10).error('Veuillez ajouter entre 1 et 5 images'),
     }),
     defineField({
       name: 'cta',
