@@ -1,11 +1,11 @@
 'use client'
-import React, {useEffect, useRef, useState} from 'react'
-import {PortableText} from '@portabletext/react'
-import type {PortableTextBlock} from '@portabletext/types'
-import Image from 'next/image'
-import '../styles/heroSection.css'
+import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import gsap from 'gsap'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+import '../styles/heroSection.css'
 import TextSlider from './TextSlider'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -162,13 +162,13 @@ export default function HeroSection({data}: HeroSectionProps) {
             <PortableText value={body} />
           </div>
 
-          <div className="hero-cta hero-cta--desktop-only">
+          <div className="hero-cta">
             {cta?.label && (
               <a
                 href={finalUrl}
                 target={data.cta?.urlType === 'external' ? '_blank' : '_self'}
                 rel="noopener noreferrer"
-                className=" hero-cta--desktop-only px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
+                className=" px-4 py-2 bg-[#1a1a1a] text-[#f1f0e7] rounded-lg hover:bg-[#1a1a1a]/90 transition"
               >
                 {data.cta?.label}
               </a>
