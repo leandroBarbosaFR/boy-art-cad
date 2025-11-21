@@ -46,7 +46,6 @@ export const heroSection = defineType({
           ],
         },
       ],
-      // validation: (rule) => rule.min(1).max(10).error('Veuillez ajouter entre 1 et 10 images'),
     }),
     defineField({
       name: 'cta',
