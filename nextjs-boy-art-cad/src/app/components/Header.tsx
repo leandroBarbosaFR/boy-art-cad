@@ -1,6 +1,6 @@
 'use client'
 
-import { DiscAlbum, Menu, X } from 'lucide-react'
+import { Disc3, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -115,7 +115,7 @@ export default function Header() {
         <nav className="flex justify-between w-full items-center h-16">
           <div className="text-xl">
             <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
-              <DiscAlbum color="#1a1a1a" size={24} className="mr-2" />
+              <Disc3 color="#1a1a1a" size={24} className="mr-2" />
               <b>Pure</b>&nbsp;platine
             </Link>
           </div>

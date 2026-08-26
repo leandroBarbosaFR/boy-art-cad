@@ -1,6 +1,6 @@
 'use client'
 
-import { DiscAlbum } from 'lucide-react'
+import { Disc3 } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { client } from '../../sanity/client'
@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Logo / Brand */}
           <div className="flex items-center text-xl font-medium">
             <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
-              <DiscAlbum size={20} className="mr-2" />
+              <Disc3 size={20} className="mr-2" />
               <b>Pure</b>&nbsp;platine
             </Link>
           </div>
