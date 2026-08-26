@@ -116,7 +116,7 @@ export default function Header() {
           <div className="text-xl">
             <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
               <DiscAlbum color="#1a1a1a" size={24} className="mr-2" />
-              <b>Pure</b> platine
+              <b>Pure</b>&nbsp;platine
             </Link>
           </div>
 
