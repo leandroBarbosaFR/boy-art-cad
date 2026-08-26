@@ -1,11 +1,11 @@
-import type {Metadata} from 'next'
-import {Poppins} from 'next/font/google'
-import './globals.css'
-import {ThemeProvider} from 'next-themes'
-import Header from '../app/components/Header'
-import Footer from '../app/components/Footer'
+import type { Metadata } from 'next'
+import { ThemeProvider } from 'next-themes'
+import { Poppins } from 'next/font/google'
+import { Suspense } from 'react'
 import CookieModal from '../app/components/CookieModal'
-import {Suspense} from 'react'
+import Footer from '../app/components/Footer'
+import Header from '../app/components/Header'
+import './globals.css'
 
 const geistSans = Poppins({
   variable: '--font-geist-sans',
@@ -20,7 +20,7 @@ const geistMono = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'BOY ART CAD ',
+  title: 'PURE PLATINE ',
   description: 'Marseille',
 }
 

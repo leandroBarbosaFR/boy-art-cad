@@ -1,9 +1,9 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import { DiscAlbum } from 'lucide-react'
 import Link from 'next/link'
-import {Joystick} from 'lucide-react'
-import {client} from '../../sanity/client'
+import { useEffect, useState } from 'react'
+import { client } from '../../sanity/client'
 
 const FOOTER_QUERY = `*[_type == "footer"][0]{
   links[]{
@@ -51,8 +51,8 @@ export default function Footer() {
           {/* Logo / Brand */}
           <div className="flex items-center text-xl font-medium">
             <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
-              <Joystick size={20} className="mr-2" />
-              Boy<b>Art</b>Cad
+              <DiscAlbum size={20} className="mr-2" />
+              <b>Pure</b>&nbsp;platine
             </Link>
           </div>
 
@@ -73,7 +73,7 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-8 text-center text-xs text-[#1a1a1a]-500">
-          &copy; {new Date().getFullYear()} BoyArtCad. Tous droits réservés
+          &copy; {new Date().getFullYear()} Pure platine. Tous droits réservés
         </div>
       </div>
     </footer>

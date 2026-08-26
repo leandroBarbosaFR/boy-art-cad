@@ -1,11 +1,11 @@
 'use client'
 
-import {useState, useRef, useEffect, useCallback} from 'react'
+import { PortableText } from '@portabletext/react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {ArrowLeft, ChevronLeft, ChevronRight, Mail} from 'lucide-react'
-import {PortableText} from '@portabletext/react'
-import type {ProductPageData, GalleryItem} from '../../lib/types/sanity'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import type { GalleryItem, ProductPageData } from '../../lib/types/sanity'
 
 interface ProductPageProps {
   data: ProductPageData
@@ -167,7 +167,7 @@ function Carousel({images}: {images: GalleryItem[]}) {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <a
-                          href="mailto:contact@boyartcad.com"
+                          href="mailto:contact@pureplatine.com"
                           className="p-1.5 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors inline-flex items-center justify-center"
                           aria-label="Envoyer un email"
                         >
