@@ -1,11 +1,11 @@
 'use client'
 
-import React, {useEffect, useState} from 'react'
+import { DiscAlbum, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import {Joystick, Menu, X} from 'lucide-react'
-import {client} from '../../sanity/client'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import useScrollPosition from '../../hooks/useScrollPosition'
-import {usePathname, useSearchParams} from 'next/navigation'
+import { client } from '../../sanity/client'
 import '../styles/header.css'
 
 const HEADER_QUERY = `*[_type == "header"][0]{
@@ -115,8 +115,8 @@ export default function Header() {
         <nav className="flex justify-between w-full items-center h-16">
           <div className="text-xl">
             <Link href="/" className="flex items-center font-medium text-[#1a1a1a]">
-              <Joystick color="#1a1a1a" size={24} className="mr-2" />
-              Boy<b>Art</b>Cad
+              <DiscAlbum color="#1a1a1a" size={24} className="mr-2" />
+              <b>Pure</b> platine
             </Link>
           </div>
 
