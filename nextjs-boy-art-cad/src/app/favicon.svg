@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-disc3-icon lucide-disc-3"><circle cx="12" cy="12" r="10"/><path d="M6 12c0-1.7.7-3.2 1.8-4.2"/><circle cx="12" cy="12" r="2"/><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"/></svg>
+<svg width="268" height="268" viewBox="0 0 268 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="268" height="268" rx="12" fill="black"/>
+<path d="M134.5 236C190.557 236 236 190.557 236 134.5C236 78.4431 190.557 33 134.5 33C78.4431 33 33 78.4431 33 134.5C33 190.557 78.4431 236 134.5 236Z" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74 134C74 117 81 102 92 92" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M134.5 155C145.822 155 155 145.822 155 134.5C155 123.178 145.822 114 134.5 114C123.178 114 114 123.178 114 134.5C114 145.822 123.178 155 134.5 155Z" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M195 134C195 151.405 188 166.762 177 177" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
