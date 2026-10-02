@@ -97,7 +97,11 @@ export default function Header() {
       const data = await client.fetch<{links: HeaderLink[]}>(HEADER_QUERY)
       setLinks(data?.links || [])
       const products = await client.fetch<ProductNavItem[]>(PRODUCT_NAV_QUERY)
-      setNavCta(products || [])
+      // Skip product pages already linked manually in the Sanity header
+      const linkedSlugs = (data?.links || [])
+        .filter((link) => link.internal?._type === 'productPage')
+        .map((link) => link.internal?.slug?.current)
+      setNavCta((products || []).filter((product) => !linkedSlugs.includes(product.slug)))
     }
     fetchHeader()
   }, [])
