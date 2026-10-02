@@ -24,7 +24,17 @@ const HEADER_QUERY = `*[_type == "header"][0]{
   }
 }`
 
-const navCta = ['Bornes', 'Cassettes', 'Tableaux']
+const PRODUCT_NAV_QUERY = `*[_type == "productPage" && defined(slug.current)] | order(_createdAt asc){
+  _id,
+  productType,
+  "slug": slug.current
+}`
+
+interface ProductNavItem {
+  _id: string
+  productType: string
+  slug: string
+}
 
 interface HeaderLink {
   _key: string
@@ -76,6 +86,7 @@ function isLinkActive(link: HeaderLink, pathname: string, searchParams: URLSearc
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [links, setLinks] = useState<HeaderLink[]>([])
+  const [navCta, setNavCta] = useState<ProductNavItem[]>([])
   const scrolled = useScrollPosition(10)
   const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
@@ -85,6 +96,8 @@ export default function Header() {
     const fetchHeader = async () => {
       const data = await client.fetch<{links: HeaderLink[]}>(HEADER_QUERY)
       setLinks(data?.links || [])
+      const products = await client.fetch<ProductNavItem[]>(PRODUCT_NAV_QUERY)
+      setNavCta(products || [])
     }
     fetchHeader()
   }, [])
@@ -141,17 +154,17 @@ export default function Header() {
               )
             })}
             {/* CTA Navigation Items */}
-            {navCta.map((item, index) => (
+            {navCta.map((item) => (
               <Link
-                key={index}
-                href={`/${item.toLowerCase()}`}
+                key={item._id}
+                href={`/${item.slug}`}
                 className={`px-4 py-2 rounded-lg transition ${
-                  pathname === `/${item.toLowerCase()}`
+                  pathname === `/${item.slug}`
                     ? 'bg-[#1a1a1a] text-[#f1f0e7]'
                     : 'text-[#1a1a1a] hover:text-[#f1f0e7] hover:bg-[#1a1a1a]/90'
                 }`}
               >
-                {item}
+                {item.productType}
               </Link>
             ))}
             <Link
@@ -202,18 +215,18 @@ export default function Header() {
             })}
 
             {/* CTA Navigation Items with bottom border + close on click */}
-            {navCta.map((item, index) => (
+            {navCta.map((item) => (
               <Link
-                key={index}
-                href={`/${item.toLowerCase()}`}
+                key={item._id}
+                href={`/${item.slug}`}
                 onClick={() => setIsOpen(false)} // ✅ close drawer on click
                 className={`px-4 py-2 transition border-b border-[#1a1a1a]/30 ${
-                  pathname === `/${item.toLowerCase()}`
+                  pathname === `/${item.slug}`
                     ? 'bg-[#1a1a1a] text-[#f1f0e7]'
                     : 'text-[#1a1a1a] hover:bg-[#1a1a1a]/90 hover:text-[#f1f0e7]'
                 }`}
               >
-                {item}
+                {item.productType}
               </Link>
             ))}
 

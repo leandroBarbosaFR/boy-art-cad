@@ -9,7 +9,6 @@ import type { GalleryItem, ProductPageData } from '../../lib/types/sanity'
 
 interface ProductPageProps {
   data: ProductPageData
-  productType: 'bornes' | 'cassettes' | 'tableaux'
 }
 
 function Carousel({images}: {images: GalleryItem[]}) {
@@ -225,20 +224,7 @@ function Carousel({images}: {images: GalleryItem[]}) {
   )
 }
 
-export default function ProductPage({data, productType}: ProductPageProps) {
-  const getProductTypeLabel = (type: string) => {
-    switch (type) {
-      case 'bornes':
-        return 'bornes interactives'
-      case 'cassettes':
-        return 'cassettes vintage'
-      case 'tableaux':
-        return 'tableaux artistiques'
-      default:
-        return type
-    }
-  }
-
+export default function ProductPage({data}: ProductPageProps) {
   return (
     <section className="relative mx-auto max-w-6xl px-4 py-10">
       {/* Back link */}
@@ -273,7 +259,7 @@ export default function ProductPage({data, productType}: ProductPageProps) {
         {/* Text content */}
         <div>
           <p className="text-xs uppercase tracking-widest text-neutral-500">
-            {data.subtitle || getProductTypeLabel(productType)}
+            {data.subtitle || data.productType}
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">{data.title}</h1>
 

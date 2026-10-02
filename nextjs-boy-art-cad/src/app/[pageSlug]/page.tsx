@@ -1,8 +1,10 @@
 // import {PortableText} from '@portabletext/react'
-import {client} from '@/sanity/client'
+import {client, getProductPageBySlug} from '@/sanity/client'
 import {notFound} from 'next/navigation'
 import PortableTextRenderer from '../components/PortableTextRenderer'
+import ProductPage from '../components/ProductPage'
 import type {PortableTextBlock} from '@portabletext/types'
+import type {ProductPageData} from '@/lib/types/sanity'
 import '../styles/legalPages.css'
 import CrabSvg from '../components/CrabSvg'
 export const dynamic = 'force-dynamic'
@@ -19,6 +21,12 @@ export async function generateStaticParams() {
 
 export default async function Page({params}: {params: Promise<{pageSlug: string}>}) {
   const {pageSlug} = await params
+
+  const product: ProductPageData | null = await getProductPageBySlug(pageSlug)
+  if (product) {
+    return <ProductPage data={product} />
+  }
+
   const page: PageData | null = await client.fetch(
     `*[_type == "pages" && slug.current == $slug][0]`,
     {slug: pageSlug},

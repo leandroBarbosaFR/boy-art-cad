@@ -1,5 +1,5 @@
 // schemas/productPage.ts
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'productPage',
@@ -10,12 +10,17 @@ export default defineType({
       name: 'productType',
       title: 'Type de produit',
       type: 'string',
+      description: 'Ex. : Platines vinyles. Ce nom apparaît dans le menu du site.',
+      validation: Rule => Rule.required()
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug (URL)',
+      type: 'slug',
+      description: 'Adresse de la page sur le site. Cliquez sur « Generate ».',
       options: {
-        list: [
-          { title: 'Bornes', value: 'bornes' },
-          { title: 'Cassettes', value: 'cassettes' },
-          { title: 'Tableaux', value: 'tableaux' }
-        ]
+        source: 'productType',
+        maxLength: 96
       },
       validation: Rule => Rule.required()
     }),

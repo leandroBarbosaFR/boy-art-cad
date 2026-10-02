@@ -1,4 +1,5 @@
-export const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && productType == $productType][0]{
+export const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && slug.current == $slug][0]{
+  productType,
   title,
   subtitle,
   description,

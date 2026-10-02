@@ -7,8 +7,9 @@ export const client = createClient({
   useCdn: false,
 })
 
-// Query GROQ pour récupérer une page produit par type
-const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && productType == $productType][0]{
+// Query GROQ pour récupérer une page produit par slug
+const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && slug.current == $slug][0]{
+  productType,
   title,
   subtitle,
   description,
@@ -33,7 +34,7 @@ const PRODUCT_PAGE_QUERY = `*[_type == "productPage" && productType == $productT
   seo
 }`
 
-// Fonction pour récupérer une page produit par type
-export async function getProductPageByType(productType: 'bornes' | 'cassettes' | 'tableaux') {
-  return await client.fetch(PRODUCT_PAGE_QUERY, { productType })
+// Fonction pour récupérer une page produit par slug
+export async function getProductPageBySlug(slug: string) {
+  return await client.fetch(PRODUCT_PAGE_QUERY, { slug })
 }

@@ -16,6 +16,7 @@ export interface GalleryItem {
 }
 
 export interface ProductPageData {
+  productType?: string
   title: string
   subtitle?: string
   description?: PortableTextBlock[]
@@ -30,5 +31,3 @@ export interface ProductPageData {
 export interface ProductPageProps {
   data: ProductPageData
 }
-
-export type ProductType = 'bornes' | 'cassettes' | 'tableaux'
