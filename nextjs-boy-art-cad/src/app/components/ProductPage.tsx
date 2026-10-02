@@ -11,7 +11,7 @@ interface ProductPageProps {
   data: ProductPageData
 }
 
-function Carousel({images}: {images: GalleryItem[]}) {
+function Carousel({images, pageSlug}: {images: GalleryItem[]; pageSlug?: string}) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -136,56 +136,71 @@ function Carousel({images}: {images: GalleryItem[]}) {
             width: `${(images.length / visibleCount) * 100}%`,
           }}
         >
-          {images.map((item, i) => (
-            <div
-              key={i}
-              className="relative group cursor-pointer px-2"
-              style={{width: `${100 / images.length}%`}} // width per item within the track
-            >
-              <div className="relative overflow-hidden rounded-xl">
-                <Image
-                  src={item.image.asset.url}
-                  alt={item.image.alt || item.title}
-                  width={600}
-                  height={400}
-                  className="h-[330px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  priority={i < visibleCount}
-                />
+          {images.map((item, i) => {
+            const href = pageSlug && item.slug ? `/${pageSlug}/${item.slug}` : null
+            return (
+              <div
+                key={i}
+                className="relative group cursor-pointer px-2"
+                style={{width: `${100 / images.length}%`}} // width per item within the track
+              >
+                <div className="relative overflow-hidden rounded-xl">
+                  <Image
+                    src={item.image.asset.url}
+                    alt={item.image.alt || item.title}
+                    width={600}
+                    height={400}
+                    className="h-[330px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    priority={i < visibleCount}
+                  />
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="relative z-10 p-4 text-white transform translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 w-full">
-                    <div className="mb-3">
-                      <h3 className="text-base font-semibold mb-2 line-clamp-1">{item.title}</h3>
-                      <p className="text-xs text-gray-200 leading-relaxed line-clamp-3">
-                        {item.excerpt ||
-                          'Description détaillée de ce produit et de ses fonctionnalités principales.'}
-                      </p>
-                    </div>
+                  {href && (
+                    <Link href={href} className="absolute inset-0" aria-label={`Voir ${item.title}`} />
+                  )}
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <a
-                          href="mailto:contact@pureplatine.com"
-                          className="p-1.5 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors inline-flex items-center justify-center"
-                          aria-label="Envoyer un email"
-                        >
-                          <Mail className="h-3 w-3" />
-                        </a>
-                        <Link
-                          href="/contact"
-                          className="px-3 py-1.5 bg-white text-black text-xs font-medium rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap inline-flex items-center justify-center"
-                        >
-                          Prendre contact
-                        </Link>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end pointer-events-none">
+                    <div className="relative z-10 p-4 text-white transform translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 w-full">
+                      <div className="mb-3">
+                        <h3 className="text-base font-semibold mb-2 line-clamp-1">{item.title}</h3>
+                        <p className="text-xs text-gray-200 leading-relaxed line-clamp-3">
+                          {item.excerpt ||
+                            'Description détaillée de ce produit et de ses fonctionnalités principales.'}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 pointer-events-auto">
+                          <a
+                            href="mailto:contact@pureplatine.com"
+                            className="p-1.5 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors inline-flex items-center justify-center"
+                            aria-label="Envoyer un email"
+                          >
+                            <Mail className="h-3 w-3" />
+                          </a>
+                          <Link
+                            href="/contact"
+                            className="px-3 py-1.5 bg-white text-black text-xs font-medium rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap inline-flex items-center justify-center"
+                          >
+                            Prendre contact
+                          </Link>
+                          {href && (
+                            <Link
+                              href={href}
+                              className="px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full hover:bg-white/30 transition-colors whitespace-nowrap inline-flex items-center justify-center"
+                            >
+                              Voir le détail
+                            </Link>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
+                  {/* /Overlay */}
                 </div>
-                {/* /Overlay */}
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 
@@ -292,7 +307,7 @@ export default function ProductPage({data}: ProductPageProps) {
       {data.gallery && data.gallery.length > 0 && (
         <div id="galerie" className="mt-16">
           <h2 className="mb-6 text-2xl font-semibold">Galerie</h2>
-          <Carousel images={data.gallery} />
+          <Carousel images={data.gallery} pageSlug={data.slug} />
         </div>
       )}
     </section>

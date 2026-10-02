@@ -88,11 +88,51 @@ export default defineType({
               validation: Rule => Rule.required()
             },
             {
+              name: 'slug',
+              title: 'Slug (URL)',
+              type: 'slug',
+              description: 'Adresse de la page détail. Cliquez sur « Generate ». Sans slug, pas de page détail.',
+              options: {
+                source: (_doc, { parent }) => (parent as { title?: string })?.title || '',
+                maxLength: 96,
+                // Unicité vérifiée au niveau de la galerie (voir validation ci-dessous)
+                isUnique: () => true
+              }
+            },
+            {
               name: 'excerpt',
               title: 'Extrait',
               type: 'text',
               rows: 3,
               description: 'Description courte (2-3 lignes)'
+            },
+            {
+              name: 'description',
+              title: 'Description complète',
+              type: 'array',
+              description: 'Affichée sur la page détail',
+              of: [{ type: 'block' }]
+            },
+            {
+              name: 'images',
+              title: 'Images supplémentaires',
+              type: 'array',
+              description: 'Affichées sur la page détail',
+              of: [
+                {
+                  type: 'image',
+                  options: {
+                    hotspot: true
+                  },
+                  fields: [
+                    {
+                      name: 'alt',
+                      title: 'Texte alternatif',
+                      type: 'string'
+                    }
+                  ]
+                }
+              ]
             }
           ],
           preview: {
@@ -102,7 +142,14 @@ export default defineType({
             }
           }
         }
-      ]
+      ],
+      validation: Rule =>
+        Rule.custom((items: { slug?: { current?: string } }[] | undefined) => {
+          const slugs = (items || []).map(item => item.slug?.current).filter(Boolean)
+          return new Set(slugs).size === slugs.length
+            ? true
+            : 'Deux éléments de la galerie ont le même slug.'
+        })
     }),
     defineField({
       name: 'seo',

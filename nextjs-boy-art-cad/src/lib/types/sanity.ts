@@ -11,12 +11,27 @@ export interface SanityImage {
 
 export interface GalleryItem {
   title: string
+  slug?: string
   excerpt?: string
   image: SanityImage
 }
 
+export interface ProductItemData {
+  productType?: string
+  title: string
+  slug: string
+  item?: {
+    title: string
+    excerpt?: string
+    description?: PortableTextBlock[]
+    image?: SanityImage
+    images?: SanityImage[]
+  }
+}
+
 export interface ProductPageData {
   productType?: string
+  slug?: string
   title: string
   subtitle?: string
   description?: PortableTextBlock[]
